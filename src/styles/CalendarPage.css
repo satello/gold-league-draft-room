@@ -1,0 +1,28 @@
+.dashboard-module {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    min-height: 200px;
+    overflow: hidden;
+}
+
+.dashboard-module .title {
+    padding: 15px;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: #008ed6;
+}
+.embed-code-button {
+    padding: 15px;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+}
+#ck-widget{
+    margin: 20px auto;
+}

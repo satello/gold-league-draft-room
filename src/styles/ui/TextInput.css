@@ -1,0 +1,29 @@
+.TextInput label{
+    display: block;
+    font-size: 14px;
+    font-weight: 300;
+    color: #666;
+    margin: 15px 0 5px;
+    padding-left: 5px;
+    letter-spacing: 0.4px;
+}
+.TextInput input[type="text"], .TextInput input[type="email"] {
+    width: 100%;
+    border: 1px solid #e6e9ec;
+    box-shadow: inset 0 1px 3px 0 rgba(0,1,1,0.06);
+    background: #f9fafb;
+    border-radius: 6px;
+    padding: 10px;
+    color: #666;
+    font-size: 14px;
+    line-height: 25px;
+}
+.TextInput input[type="text"]:disabled, .TextInput input[type="email"]:disabled {
+    background: #f1f1f1;
+    color: #999;
+}
+.TextInput input[type="text"]:focus, .TextInput input[type="email"]:focus {
+    outline: none;
+    border-color: #008ed6;
+    background: #fff;
+}

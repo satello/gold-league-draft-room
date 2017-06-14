@@ -1,0 +1,22 @@
+.PaypalConnect div {
+    border: 1px solid #ddd;
+    background: #f5f7f9;
+    border-radius: 3px;
+    padding: 10px;
+    color: #666;
+    font-size: 14px;
+    line-height: 25px;
+    display: inline-block;
+}
+.PaypalConnect div span {
+    margin-right: 15px;
+}
+.PaypalConnect div a {
+    cursor: pointer;
+}
+.PaypalConnect p.warning {
+    font-size: 13px;
+    font-weight: 300;
+    color: #F44336;
+    padding-left: 5px;
+}

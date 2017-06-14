@@ -1,0 +1,42 @@
+.TimeInput {
+    position: relative;
+}
+.TimeInput label {
+    display: block;
+    font-size: 14px;
+    font-weight: 300;
+    color: #666;
+    margin: 15px 0 5px;
+    padding-left: 5px;
+    letter-spacing: 0.4px;
+}
+.TimeInput input[type="number"] {
+    width: 100%;
+    border: 1px solid #e6e9ec;
+    box-shadow: inset 0px 1px 3px 0px rgba(0,1,1,0.06);
+    background: #f9fafb;
+    border-radius: 3px;
+    color: #666;
+    font-size: 14px;
+    line-height: 25px;
+    padding: 10px 10px 10px 15px;
+}
+.TimeInput input[type="number"]:disabled {
+    background: #f1f1f1;
+    color: #999;
+}
+.TimeInput input[type="number"]:focus {
+    outline: none;
+    border-color: #008ed6;
+    background: #fff;
+}
+
+.TimeInput span {
+    position: absolute;
+    left: 43px;
+    display: block;
+    height: 47px;
+    line-height: 47px;
+    padding: 0;
+    color: #888;
+}
