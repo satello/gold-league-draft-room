@@ -1,5 +1,0 @@
-export const CALENDAR_DETAILS_LOADED = 'calendar.CALENDAR_DETAILS_LOADED';
-export const UPDATE_CALENDAR_DETAILS = 'calendar.UPDATE_CALENDAR_DETAILS';
-export const CALENDAR_SAVED = 'calendar.CALENDAR_SAVED';
-export const LOAD_CALENDAR = 'calendar.LOAD_CALENDAR';
-export const TOGGLE_EMBED_CODE = 'calendar.TOGGLE_EMBED_CODE';

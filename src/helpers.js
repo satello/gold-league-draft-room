@@ -5,6 +5,7 @@ const helpers = {
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
         var results = regex.exec(location.search);
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-    }
+    },
+    positions: ['RB', 'WR', 'QB', 'TE']
 };
 export default helpers;

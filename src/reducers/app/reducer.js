@@ -1,4 +1,4 @@
-import * as types from './actionTypes';
+import * as types from '../../actions/app/actionTypes';
 
 const initialState = {
     jwt: null,
