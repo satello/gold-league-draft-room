@@ -6,7 +6,10 @@ import DockMonitor from 'redux-devtools-dock-monitor'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+// middleware
 import thunk from 'redux-thunk';
+import socketMiddleware from './middleware/socket'
+// redux
 import {Router, browserHistory} from 'react-router';
 
 // routes
@@ -15,13 +18,14 @@ import App from './App';
 
 // real pages
 import Page404 from './views/404';
+import auctionRoom from './views/auctionRoom';
 
 // import main style dependency file
 import './index.scss';
 
 // Import the reducers
 import * as reducers from './reducers';
-import * as appActions from './actions/app/actions';
+import * as appActions from './actions';
 
 
 const DevTools = createDevTools(
@@ -41,7 +45,7 @@ const store = createStore(
         routing: routerReducer
     }),
     compose(
-        applyMiddleware(thunk),
+        applyMiddleware(thunk, socketMiddleware),
         DevTools.instrument()
     )
 );
@@ -78,11 +82,6 @@ class Index {
                 state: { nextPathname: nextState.location.pathname }
             })
         }
-        if (this.isOnboarding) {
-            replace({
-                pathname: '/onboarding/1'
-            })
-        }
     }
 
     checkForAuthCode = (nextState, replace) => {
@@ -100,7 +99,7 @@ class Index {
           <div>
             <Router history={history}>
               <Route component={App} path='/'>
-                  <IndexRoute component={Page404} freeAgents={false}/>
+                  <IndexRoute component={auctionRoom} freeAgents={false}/>
               </Route>
               {/* default */}
               <Route component={Page404} path="404"/>

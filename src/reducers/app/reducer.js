@@ -1,4 +1,4 @@
-import * as types from '../../actions/app/actionTypes';
+import * as types from '../../actions/types';
 
 const initialState = {
     jwt: null,
@@ -47,7 +47,7 @@ export default function appState(state = initialState, action = {}) {
             return Object.assign({}, state, {
                 isOnboarding: action.payload
             });
-      case types.TOGGLE_NAV:
+        case types.TOGGLE_NAV:
             return Object.assign({}, state, {
               sidebarNavOpen: !state.sidebarNavOpen
             });

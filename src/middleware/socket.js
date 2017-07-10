@@ -1,9 +1,11 @@
-import actions from '../actions'
+import actions from '../actions';
+import actionTypes from '../actions/types';
 
 const socketMiddleware = (function(){
   var socket = null;
 
-  const onOpen = (ws,store,token) => evt => {
+  // TODO add token back in for handshake
+  const onOpen = (ws,store) => evt => {
     //Send a handshake, or authenticate with remote end
 
     //Tell the store we're connected
@@ -21,7 +23,7 @@ const socketMiddleware = (function(){
     switch(msg.type) {
       case "CHAT_MESSAGE":
         //Dispatch an action that adds the received message to our state
-        store.dispatch(actions.messageReceived(msg));
+        store.dispatch(actions.chatMessageRecieved(msg));
         break;
       default:
         console.log("Received unknown message type: '" + msg.type + "'");
@@ -33,7 +35,7 @@ const socketMiddleware = (function(){
     switch(action.type) {
 
       //The user wants us to connect
-      case 'CONNECT':
+      case actionTypes.SOCKET_CONNECT:
         //Start a new connection to the server
         if(socket != null) {
           socket.close();
@@ -45,12 +47,12 @@ const socketMiddleware = (function(){
         socket = new WebSocket(action.url);
         socket.onmessage = onMessage(socket,store);
         socket.onclose = onClose(socket,store);
-        socket.onopen = onOpen(socket,store,action.token);
+        socket.onopen = onOpen(socket,store);
 
         break;
 
       //The user wants us to disconnect
-      case 'DISCONNECT':
+      case actionTypes.SOCKET_DISCONNECT:
         if(socket != null) {
           socket.close();
         }
@@ -61,7 +63,7 @@ const socketMiddleware = (function(){
         break;
 
       //Send the 'SEND_MESSAGE' action down the websocket to the server
-      case 'SEND_CHAT_MESSAGE':
+      case actionTypes.SEND_CHAT_MESSAGE:
         socket.send(JSON.stringify(action));
         break;
 

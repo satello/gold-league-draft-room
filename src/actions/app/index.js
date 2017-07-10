@@ -1,4 +1,4 @@
-import * as types from './actionTypes';
+import * as types from '../types';
 import helpers from '../../helpers';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
