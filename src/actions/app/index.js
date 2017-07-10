@@ -1,6 +1,8 @@
 import * as types from '../types';
 import helpers from '../../helpers';
 
+import { connectSocket } from '../socket';
+
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 export function initializeApp() {
@@ -13,6 +15,7 @@ export function initializeApp() {
             dispatch(loginUser(jwt, urlParamJwt !== null));
         }
         else {
+            dispatch(connectSocket());
             dispatch(appInitialized());
         }
     }
@@ -58,7 +61,6 @@ function fetchLoggedInUser(jwt) {
         })
         .then(user => {
             if (user.message==='Invalid Token') throw user;
-            if (user.selected_calendar === null) dispatch(startOnboarding());
             // update loggedInUser in store and initialize app
             dispatch(updateUser(user));
             dispatch(appInitialized());

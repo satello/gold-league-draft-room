@@ -25,7 +25,9 @@ import './index.scss';
 
 // Import the reducers
 import * as reducers from './reducers';
-import * as appActions from './actions';
+import * as appActions from './actions/app';
+
+console.log(appActions);
 
 
 const DevTools = createDevTools(

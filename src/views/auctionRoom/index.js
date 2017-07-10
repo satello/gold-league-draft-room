@@ -1,12 +1,16 @@
-import React, { Component } from 'React';
+import React, { Component } from 'react';
 
-import actions from '../../actions';
+
+import ChatBox from '../../containers/chatBox';
 
 
 class AuctionRoom extends Component {
   render() {
     return (
-      <div>Wasssssup</div>
+      <div className="AuctionRoon">
+        <div>Wasssssup</div>
+        <ChatBox />
+      </div>
     );
   }
 }

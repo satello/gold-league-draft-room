@@ -1,6 +1,6 @@
 import appState from './app/reducer';
-import socketState from './app/reducer';
-import messageState from './app/reducer';
+import socketState from './socket';
+import messageState from './messages';
 
 export {
     appState,

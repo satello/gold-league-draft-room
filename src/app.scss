@@ -1,4 +1,4 @@
-@import '../shared/variables';
+@import './shared/variables';
 
 .app-wrapper {
     display: block;
@@ -10,16 +10,7 @@
     width: 100%;
     transform: translate(0,0);
     position: relative;
-    @media(min-width: 992px) {
-        &.full {
-            width: calc(100% - .75em);
-            transform: translate(.75em, 0);
-        }
-        width: calc(100% - 15em);
-        transform: translate(15em, 0);
-        // always hide on desktop
-        .menu-dropshadow {display: none!important;}
-    }
+    padding: 5px;
     // show on only menu show + mobile view (for hiding navigation)
     .menu-dropshadow {
         display: none;
