@@ -1,5 +1,4 @@
 import * as types from '../types';
-import helpers from '../../helpers';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
@@ -25,5 +24,29 @@ export function connected() {
 export function disconnected() {
   return {
     type: types.SOCKET_DISCONNECTED
+  }
+}
+
+export function authorizeJwt() {
+  return {
+    type: types.VALIDATE_JWT
+  }
+}
+
+export function requestJwt() {
+  return {
+    type: types.REQUEST_JWT
+  }
+}
+
+export function validJwt() {
+  return {
+    type: types.VALID_JWT
+  }
+}
+
+export function invalidJwt() {
+  return {
+    type: types.INVALID_JWT
   }
 }

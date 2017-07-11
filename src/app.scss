@@ -9,7 +9,10 @@
 .content-container {
     width: 100%;
     transform: translate(0,0);
-    position: relative;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    height: 100%;
     padding: 5px;
     // show on only menu show + mobile view (for hiding navigation)
     .menu-dropshadow {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import './style.scss';
+
 import * as messageActions from '../../actions/messages';
 
 class ChatInput extends Component {
@@ -15,7 +17,6 @@ class ChatInput extends Component {
   }
 
   render() {
-    console.log(this.props.messages);
     return(
       <div className="chat-input">
         <form id="chat-input-form" onSubmit={this.newMessage.bind(this)}>

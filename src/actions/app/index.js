@@ -6,19 +6,21 @@ import { connectSocket } from '../socket';
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 export function initializeApp() {
-    return dispatch => {
-        const urlParamJwt = helpers.getUrlParameter('code') || null;
-        const localStorageJwt = localStorage.getItem('jwt') || null;
-        const jwt = urlParamJwt || localStorageJwt || null;
+  return dispatch => {
+    const urlParamJwt = helpers.getUrlParameter('code') || null;
+    const localStorageJwt = localStorage.getItem('jwt') || null;
+    const jwt = urlParamJwt || localStorageJwt || null;
 
-        if (jwt) {
-            dispatch(loginUser(jwt, urlParamJwt !== null));
-        }
-        else {
-            dispatch(connectSocket());
-            dispatch(appInitialized());
-        }
+    if (jwt) {
+      // FIXME
+      dispatch(connectSocket());
+      dispatch(appInitialized());
     }
+    else {
+      dispatch(connectSocket());
+      dispatch(appInitialized());
+    }
+  }
 }
 
 function appInitialized() {
@@ -28,13 +30,13 @@ function appInitialized() {
     }
 }
 
-function loginUser(jwt, saveToLocalStorage) {
-    return dispatch => {
-        if (saveToLocalStorage) localStorage.setItem('jwt', jwt);
-        dispatch(updateJwt(jwt));
-        dispatch(fetchLoggedInUser(jwt));
-    }
-}
+// function loginUser(jwt, saveToLocalStorage) {
+//     return dispatch => {
+//         if (saveToLocalStorage) localStorage.setItem('jwt', jwt);
+//         dispatch(updateJwt(jwt));
+//         dispatch(fetchLoggedInUser(jwt));
+//     }
+// }
 
 function updateJwt(jwt) {
     return {

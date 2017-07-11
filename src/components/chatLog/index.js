@@ -4,8 +4,6 @@ import _ from 'lodash';
 
 import './style.scss';
 
-import * as messageActions from '../../actions/messages';
-
 class ChatLog extends Component {
 
   render() {
@@ -15,7 +13,7 @@ class ChatLog extends Component {
 
     messageList = _.map(messageList, (message) => {
       return (
-        <div className="message">{message}</div>
+        <div key={message} className="message">{message}</div>
       )
     })
 

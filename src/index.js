@@ -19,6 +19,7 @@ import App from './App';
 // real pages
 import Page404 from './views/404';
 import auctionRoom from './views/auctionRoom';
+import login from './views/login';
 
 // import main style dependency file
 import './index.scss';
@@ -26,8 +27,7 @@ import './index.scss';
 // Import the reducers
 import * as reducers from './reducers';
 import * as appActions from './actions/app';
-
-console.log(appActions);
+// import { authorizeJwt } from './actions/socket';
 
 
 const DevTools = createDevTools(
@@ -77,22 +77,23 @@ class Index {
         }
     }
 
-    requireAuth = (nextState, replace) => {
-        if (!this.isLoggedIn) {
-            replace({
-                pathname: '/login',
-                state: { nextPathname: nextState.location.pathname }
-            })
-        }
+    requireToken = (nextState, replace) => {
+      const token = localStorage.getItem('jwt');
+      if (!token) {
+        replace({
+            pathname: '/login',
+            state: { nextPathname: nextState.location.pathname }
+        })
+      }
     }
 
     checkForAuthCode = (nextState, replace) => {
-        // if user is logged in don't show them login page
-        if(this.isLoggedIn) {
-            replace({
-                pathname: '/'
-            })
-        }
+      // if user is logged in don't show them login page
+      if(this.isLoggedIn) {
+        replace({
+            pathname: '/'
+        })
+      }
     }
 
     startApp() {
@@ -101,7 +102,8 @@ class Index {
           <div>
             <Router history={history}>
               <Route component={App} path='/'>
-                  <IndexRoute component={auctionRoom} freeAgents={false}/>
+                  <IndexRoute component={auctionRoom} onEnter={this.requireToken} />
+                  <Route path="login" component={login} />
               </Route>
               {/* default */}
               <Route component={Page404} path="404"/>
