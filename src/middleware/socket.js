@@ -1,13 +1,15 @@
-import * as socketActions from '../actions/socket';
-import { chatMessageRecieved } from '../actions/messages';
+import * as socketActions   from '../actions/socket';
+import * as bidderActions   from '../actions/bidders';
+import * as chatActions     from '../actions/messages';
 import {
   SOCKET_CONNECT,
   SOCKET_DISCONNECT,
   SEND_CHAT_MESSAGE,
   VALIDATE_JWT,
-  REQUEST_JWT
+  REQUEST_JWT,
+  FETCH_BIDDERS
 } from '../actions/types';
-import { AUTHORIZE_TOKEN, REQUEST_TOKEN } from '../actions/socket/payloadTypes';
+import { AUTHORIZE_TOKEN, REQUEST_TOKEN, REQUEST_BIDDERS } from '../actions/socket/payloadTypes';
 
 const socketMiddleware = (function(){
   var socket = null;
@@ -45,7 +47,10 @@ const socketMiddleware = (function(){
         break;
       case "CHAT_MESSAGE":
         //Dispatch an action that adds the received message to our state
-        store.dispatch(chatMessageRecieved(msg.body));
+        store.dispatch(chatActions.chatMessageRecieved(msg.body));
+        break;
+      case "GET_BIDDERS":
+        store.dispatch(bidderActions.receiveBidders(msg.body));
         break;
       default:
         console.log("Received unknown message type: '" + msg.type + "'");
@@ -93,8 +98,8 @@ const socketMiddleware = (function(){
           "MessageType": REQUEST_TOKEN,
           "body": {
             "name": userInfo.name,
-            "cap": userInfo.cap,
-            "spots": userInfo.spots
+            "cap": parseInt(userInfo.cap),
+            "spots": parseInt(userInfo.spots)
           }
         }
 
@@ -120,6 +125,11 @@ const socketMiddleware = (function(){
       //Send the 'SEND_MESSAGE' action down the websocket to the server
       case SEND_CHAT_MESSAGE:
         socket.send(JSON.stringify(action.payload));
+        break;
+      case FETCH_BIDDERS:
+        socket.send(JSON.stringify({
+          "MessageType": REQUEST_BIDDERS
+        }));
         break;
       //This action is irrelevant to us, pass it on to the next middleware
       default:

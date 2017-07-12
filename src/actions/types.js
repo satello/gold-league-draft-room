@@ -20,3 +20,6 @@ export const INVALID_JWT = 'auth.INVALID_JWT';
 // messages
 export const SEND_CHAT_MESSAGE = 'msg.SEND_CHAT_MESSAGE';
 export const RECIEVE_CHAT_MESSAGE = 'msg.RECIEVE_CHAT_MESSAGE';
+// bidders
+export const FETCH_BIDDERS = 'bidder.FETCH_BIDDERS';
+export const RECEIVE_BIDDERS = 'bidder.RECEIVE_BIDDERS';
