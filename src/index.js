@@ -19,7 +19,6 @@ import App from './App';
 // real pages
 import Page404 from './views/404';
 import auctionRoom from './views/auctionRoom';
-import login from './views/login';
 
 // import main style dependency file
 import './index.scss';
@@ -102,8 +101,7 @@ class Index {
           <div>
             <Router history={history}>
               <Route component={App} path='/'>
-                  <IndexRoute component={auctionRoom} onEnter={this.requireToken} />
-                  <Route path="login" component={login} />
+                  <IndexRoute component={auctionRoom} />
               </Route>
               {/* default */}
               <Route component={Page404} path="404"/>

@@ -1,5 +1,6 @@
 @import './shared/variables'; // modify bootstrap variables and put extra variables in this file
 @import './../node_modules/bootstrap/scss/bootstrap.scss'; // import full bootstrap here (as-is)
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
 
 
 // ---------- bootstrap override ------------
@@ -13,6 +14,7 @@ html {
 body {
     letter-spacing: .045rem;
     background-color: $md-blue-grey-900;
+    font-family: 'Ubuntu', sans-serif;
 }
 *:focus {
     outline: none!important;
@@ -40,7 +42,7 @@ input,
 optgroup,
 select,
 textarea {
-    font-family: $font-family-sans-serif;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 /** Bug fix for pre **/

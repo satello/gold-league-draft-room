@@ -70,7 +70,11 @@ const socketMiddleware = (function(){
         // store.dispatch(actions.connecting());
 
         //Attempt to connect (we could send a 'failed' action on error)
-        socket = new WebSocket(action.url);
+        try {
+          socket = new WebSocket(action.url);
+        } catch (e) {
+          // TODO do some retry
+        }
         socket.onmessage = onMessage(socket,store);
         socket.onclose = onClose(socket,store);
         socket.onopen = onOpen(socket,store);

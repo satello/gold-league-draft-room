@@ -1,0 +1,10 @@
+@import '../../shared/variables';
+
+.bidder-avatar {
+  padding: 3px;
+  margin: 7px;
+  border-radius: 5px;
+  width: auto;
+  display: inline-block;
+  background-color: $md-blue-grey-100;
+}

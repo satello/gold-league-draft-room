@@ -61,6 +61,7 @@
     <script>
       // Check browser support
       if (typeof(Storage) !== "undefined") {
+        localStorage.removeItem("user");
           // Store
           // if (!localStorage.getItem("weights")) {
           //   localStorage.setItem("weights", JSON.stringify(

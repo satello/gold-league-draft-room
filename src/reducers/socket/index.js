@@ -14,7 +14,6 @@ export default function socketState(state = initialState, action = {}) {
     case types.INVALID_JWT:
       return Object.assign({}, state, {loggedIn: false});
     case types.VALID_JWT:
-      console.log("new things");
       return Object.assign({}, state, {loggedIn: true});
     default:
       return state;

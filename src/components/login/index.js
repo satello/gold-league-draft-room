@@ -7,12 +7,6 @@ import { requestJwt } from '../../actions/socket';
 import './style.scss';
 
 class TokenLogin extends Component {
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps.socketState);
-    if (nextProps.socketState && nextProps.socketState.loggedIn) {
-      browserHistory.push('/');
-    }
-  }
 
   fetchToken(event) {
     event.preventDefault();
