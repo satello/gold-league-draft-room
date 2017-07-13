@@ -29,6 +29,7 @@ function appInitialized() {
 }
 
 export function openAuctionRoom(payload) {
+  console.log(payload);
   return dispatch => {
     fetch(`${API_ENDPOINT}/new-room`, {
         method: 'POST',
@@ -37,7 +38,7 @@ export function openAuctionRoom(payload) {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-        body: payload
+        body: JSON.stringify(payload)
     })
     .then(response => {
       // turn response into json

@@ -1,6 +1,7 @@
 import * as types from '../../actions/types';
 
 const initialState = {
+  biddersLoaded: false,
   bidders: []
 };
 
@@ -9,7 +10,7 @@ export default function bidderState(state = initialState, action = {}) {
     case types.RECEIVE_BIDDERS:
       const bidderList = action.payload;
 
-      return Object.assign({}, state, {bidders: bidderList});
+      return Object.assign({}, state, {bidders: bidderList, biddersLoaded: true});
     default:
       return state;
   }

@@ -97,8 +97,8 @@ class Home extends Component {
     const biddersCopy = this.state.bidders.slice();
     biddersCopy.push({
       "name": name.value,
-      "cap": cap.value,
-      "spots": spots.value
+      "cap": parseInt(cap.value),
+      "spots": parseInt(spots.value)
     });
 
     this.setState({
@@ -125,15 +125,15 @@ class Home extends Component {
       "limitedSpots": limitedSpots.checked,
       "allSpotsFilled": allSpotsFilled.checked,
       "useAutoNominate": useAutoNominate.checked,
-      "minSecondsPerItem": minSecondsPerItem.value,
+      "minSecondsPerItem": parseInt(minSecondsPerItem.value),
       "resetTimerOnBid": resetTimerOnBid.checked,
-      "resetSeconds": resetSeconds.value
+      "resetSeconds": parseInt(resetSeconds.value)
     }
 
     // Google sheet
     // TODO ignore for now
 
-    const payload = Object.assign({}, this.state, rules)
+    const payload = Object.assign({}, this.state, {"rules": rules});
     this.props.openAuctionRoom(payload);
   }
 

@@ -13,7 +13,9 @@ class BidderBox extends Component {
     this.requestedBidders = false;
   }
   componentWillMount() {
-    this.props.getBidders();
+    if (!this.props.bidderState.biddersLoaded) {
+      this.props.getBidders();
+    }
   }
 
   componentWillReceiveProps(nextProps) {

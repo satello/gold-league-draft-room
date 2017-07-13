@@ -3,10 +3,16 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
 import { requestJwt } from '../../actions/socket';
+import { fetchBidders } from '../../actions/bidders';
 
 import './style.scss';
 
 class TokenLogin extends Component {
+  componentWillMount() {
+    if (!this.props.bidderState.biddersLoaded) {
+      this.props.getBidders();
+    }
+  }
 
   fetchToken(event) {
     event.preventDefault();
@@ -31,16 +37,20 @@ class TokenLogin extends Component {
   }
 
   render() {
+    if (!this.props.bidderState || !this.props.bidderState.biddersLoaded) return false;
+
+    const bidders = this.props.bidderState.bidders;
+    const bidderOptions = []
+    for (var i=0; i<bidders.length; i++) {
+      bidderOptions.push(
+        <option value={bidders[i].name}>{bidders[i].name}</option>
+      )
+    }
     return (
       <div className="token-login">
-        <h3> Enter User Information to Enter Draft Room </h3>
+        <h3> Select your bidder identity to login </h3>
         <form onSubmit={this.fetchToken.bind(this)}>
-          <label htmlFor="nameInput">Name</label>
-          <input id="nameInput" type="text" />
-          <label htmlFor="capInput">Available Funds</label>
-          <input id="capInput" type="number" />
-          <label htmlFor="spotsInput">Spots Available</label>
-          <input id="spotsInput" type="number" defaultValue={null}/>
+          <select>{bidderOptions}</select>
           <input type="submit" value="Enter" />
         </form>
       </div>
@@ -52,6 +62,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     requestJwt: () => {
       dispatch(requestJwt());
+    },
+    getBidders: () => {
+      dispatch(fetchBidders());
     }
   }
 };
