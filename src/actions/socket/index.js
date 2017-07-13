@@ -1,11 +1,11 @@
 import * as types from '../types';
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+const WS_ENDPOINT = process.env.REACT_APP_WS_ENDPOINT;
 
-export function connectSocket() {
+export function connectSocket(roomId) {
   return {
     type: types.SOCKET_CONNECT,
-    url: `${API_ENDPOINT}/connect`
+    url: `${WS_ENDPOINT}/${roomId}/connect`
   }
 }
 

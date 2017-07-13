@@ -8,6 +8,8 @@ const initialState = {
     isLoading: false,
     isOnboarding: false,
     sidebarNavOpen: false,
+    hasRoomId: false,
+    roomId: null,
     notification: {
         show: false,
         type: null,
@@ -43,14 +45,15 @@ export default function appState(state = initialState, action = {}) {
             return Object.assign({}, state, {
                 notification: action.payload
             });
-        case types.IS_ONBOARDING:
-            return Object.assign({}, state, {
-                isOnboarding: action.payload
-            });
         case types.TOGGLE_NAV:
             return Object.assign({}, state, {
               sidebarNavOpen: !state.sidebarNavOpen
             });
+        case types.SHOW_AUCTION_ROOM_ID:
+          return Object.assign({}, state, {
+            hasRoomId: true,
+            roomId: action.roomId
+          });
         default:
             return state;
     }

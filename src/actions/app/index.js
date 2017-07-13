@@ -13,11 +13,9 @@ export function initializeApp() {
 
     if (jwt) {
       // FIXME
-      dispatch(connectSocket());
       dispatch(appInitialized());
     }
     else {
-      dispatch(connectSocket());
       dispatch(appInitialized());
     }
   }
@@ -28,6 +26,39 @@ function appInitialized() {
         type: types.APP_INITIALIZED,
         payload: true
     }
+}
+
+export function openAuctionRoom(payload) {
+  return dispatch => {
+    fetch(`${API_ENDPOINT}/new-room`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: payload
+    })
+    .then(response => {
+      // turn response into json
+      return response.json();
+    })
+    .then(response => {
+      console.log()
+      dispatch(showAuctionRoomId(response.result));
+    })
+    .catch(error => {
+        console.log(error.message);
+        // if can't auth user, logout and send to login page
+    });
+  }
+}
+
+function showAuctionRoomId(roomId) {
+  return {
+    type: types.SHOW_AUCTION_ROOM_ID,
+    roomId: roomId
+  }
 }
 
 // function loginUser(jwt, saveToLocalStorage) {
