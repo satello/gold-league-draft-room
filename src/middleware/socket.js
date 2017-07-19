@@ -5,7 +5,7 @@ import {
   SOCKET_CONNECT,
   SOCKET_DISCONNECT,
   SEND_CHAT_MESSAGE,
-  VALIDATE_JWT,
+  VALIDATE_BIDDER,
   REQUEST_JWT,
   FETCH_BIDDERS
 } from '../actions/types';
@@ -31,16 +31,16 @@ const socketMiddleware = (function(){
     console.log(msg.MessageType);
     switch(msg.MessageType) {
       case "TOKEN_VALID":
-        store.dispatch(socketActions.validJwt());
+        store.dispatch(socketActions.validBidder());
         break;
       case "NEW_TOKEN":
-        localStorage.setItem('jwt', msg.body.token);
-        store.dispatch(socketActions.authorizeJwt());
+        localStorage.setItem('bidderId', msg.body.token);
+        store.dispatch(socketActions.authorizeBidder());
         break;
       case "INVALID_TOKEN":
         // get new token
         // store.dispatch(socketActions.requestJwt());
-        store.dispatch(socketActions.invalidJwt());
+        store.dispatch(socketActions.invalidBidder());
         break;
       case "BAD_TOKEN_REQUEST":
         store.dispatch(socketActions.disconnectSocket());
@@ -102,19 +102,20 @@ const socketMiddleware = (function(){
           "MessageType": REQUEST_TOKEN,
           "body": {
             "name": userInfo.name,
-            "cap": parseInt(userInfo.cap),
-            "spots": parseInt(userInfo.spots)
+            "cap": parseInt(userInfo.cap, 10),
+            "spots": parseInt(userInfo.spots, 10)
           }
         }
 
         socket.send(JSON.stringify(authJson));
         break;
-      case VALIDATE_JWT:
-        const jwt = localStorage.getItem("jwt");
+      case VALIDATE_BIDDER:
+        const bidderId = localStorage.getItem("bidderId");
 
-        if (!jwt) {
+        if (!bidderId) {
           // shouldn't get here...
-          store.dispatch(socketActions.requestJwt());
+          console.log("BROKEN!!! FIXME");
+          // store.dispatch(socketActions.requestJwt());
           next(action);
           break;
         }
@@ -122,7 +123,7 @@ const socketMiddleware = (function(){
         socket.send(JSON.stringify({
           "MessageType": AUTHORIZE_TOKEN,
           "body": {
-            "token": jwt
+            "token": bidderId
           }
         }));
         break;

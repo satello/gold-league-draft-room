@@ -74,6 +74,7 @@ class Home extends Component {
   showNewBidder() {
     const modal = document.getElementById('newBidderModal');
     modal.style.display = "block";
+    modal.focus();
   }
 
   closeModal() {
@@ -180,7 +181,7 @@ class Home extends Component {
                       <form onSubmit={this.addBidder.bind(this)}>
                         <h4>New Bidder</h4>
                         <label htmlFor="name">Name: </label>
-                        <input type="text" id="name" />
+                        <input type="text" id="name" autoFocus="autofocus"/>
                         <br />
                         <label htmlFor="cap">Cap($): </label>
                         <input type="number" id="cap" />

@@ -11,9 +11,9 @@ export default function socketState(state = initialState, action = {}) {
       return Object.assign({}, state, {connected: true});
     case types.SOCKET_DISCONNECTED:
       return Object.assign({}, state, {connected: false});
-    case types.INVALID_JWT:
+    case types.INVALID_BIDDER:
       return Object.assign({}, state, {loggedIn: false});
-    case types.VALID_JWT:
+    case types.VALID_BIDDER:
       return Object.assign({}, state, {loggedIn: true});
     default:
       return state;

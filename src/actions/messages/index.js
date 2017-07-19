@@ -12,7 +12,7 @@ export function sendChatMessage(msg) {
   const user = JSON.parse(localStorage.getItem('user'));
   const payload = {
     MessageType: payloadTypes.SEND_CHAT_MESSAGE,
-    BidderId: localStorage.getItem('jwt') || null,
+    BidderId: localStorage.getItem('bidderId') || null,
     Body: {
       message: msg,
       sender: user.name

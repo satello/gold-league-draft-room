@@ -8,7 +8,7 @@ const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 export function initializeApp() {
   return dispatch => {
     const urlParamJwt = helpers.getUrlParameter('code') || null;
-    const localStorageJwt = localStorage.getItem('jwt') || null;
+    const localStorageJwt = localStorage.getItem('bidderId') || null;
     const jwt = urlParamJwt || localStorageJwt || null;
 
     if (jwt) {

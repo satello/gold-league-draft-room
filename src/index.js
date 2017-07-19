@@ -27,7 +27,7 @@ import './index.scss';
 // Import the reducers
 import * as reducers from './reducers';
 import * as appActions from './actions/app';
-// import { authorizeJwt } from './actions/socket';
+// import { authorizeBidder } from './actions/socket';
 
 
 const DevTools = createDevTools(
@@ -78,7 +78,7 @@ class Index {
     }
 
     requireToken = (nextState, replace) => {
-      const token = localStorage.getItem('jwt');
+      const token = localStorage.getItem('bidderId');
       if (!token) {
         replace({
             pathname: '/login',

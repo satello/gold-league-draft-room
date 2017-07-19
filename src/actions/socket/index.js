@@ -27,9 +27,9 @@ export function disconnected() {
   }
 }
 
-export function authorizeJwt() {
+export function authorizeBidder() {
   return {
-    type: types.VALIDATE_JWT
+    type: types.VALIDATE_BIDDER
   }
 }
 
@@ -39,14 +39,14 @@ export function requestJwt() {
   }
 }
 
-export function validJwt() {
+export function validBidder() {
   return {
-    type: types.VALID_JWT
+    type: types.VALID_BIDDER
   }
 }
 
-export function invalidJwt() {
+export function invalidBidder() {
   return {
-    type: types.INVALID_JWT
+    type: types.INVALID_BIDDER
   }
 }

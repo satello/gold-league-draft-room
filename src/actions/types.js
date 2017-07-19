@@ -14,10 +14,10 @@ export const SOCKET_DISCONNECT = 'socket.SOCKET_DISCONNECT';
 export const SOCKET_CONNECTED = 'socket.SOCKET_CONNECTED';
 export const SOCKET_DISCONNECTED = 'socket.SOCKET_DISCONNECTED';
 // auth
-export const VALIDATE_JWT = 'auth.VALIDATE_JWT';
+export const VALIDATE_BIDDER = 'auth.VALIDATE_BIDDER';
 export const REQUEST_JWT = 'auth.REQUEST_JWT';
-export const VALID_JWT = 'auth.VALID_JWT';
-export const INVALID_JWT = 'auth.INVALID_JWT';
+export const VALID_BIDDER = 'auth.VALID_BIDDER';
+export const INVALID_BIDDER = 'auth.INVALID_BIDDER';
 // messages
 export const SEND_CHAT_MESSAGE = 'msg.SEND_CHAT_MESSAGE';
 export const RECIEVE_CHAT_MESSAGE = 'msg.RECIEVE_CHAT_MESSAGE';
