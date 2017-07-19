@@ -134,17 +134,17 @@ class Home extends Component {
       return (
         <div className="home">
           <div className="continue-btn">
-            <div className="new-draft-room-btn btn" onClick={this.newDraftRoom.bind(this)}>Open Auction Room</div>
+            <div className="new-draft-room-btn btn" onClick={this.newDraftRoom.bind(this)}>Create Auction Room</div>
           </div>
           <div className="content">
             <div className="row">
               <div className="col-md-6">
-                <h1> Create New Auction Room </h1>
+                <h1> Open Auction Rooms (FIXME doesn't work ATM) </h1>
               </div>
             </div>
             <div className="row">
               <div className="col-md-12">
-                
+
               </div>
             </div>
           </div>

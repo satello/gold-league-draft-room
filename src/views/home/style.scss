@@ -5,6 +5,16 @@
   overflow-y: scroll;
   height: 100%;
 
+  .roomId-box {
+    text-align: center;
+    h3 {
+      padding: 15px;
+    }
+    a {
+      color: blue;
+    }
+  }
+
   .rules-inputs {
     padding: 30px;
     label {

@@ -28,7 +28,6 @@ class PlayerBox extends Component {
   render() {
     if (!this.props.playerState || !this.props.playerState.playersLoaded) return false;
     const players = this.props.playerState.players;
-    console.log(players);
 
     const settings = {
       sortVal: "value",

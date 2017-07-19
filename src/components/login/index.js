@@ -18,21 +18,13 @@ class TokenLogin extends Component {
   loginWithUser(event) {
     event.preventDefault();
 
-    // const name = document.getElementById("nameInput");
-    // const cap = document.getElementById("capInput");
-    // const spots = document.getElementById("spotsInput");
-
-    // if (!name.value || !cap.value) {
-    //   // FIXME actually show user where they fucked up
-    //   return;
-    // }
     const select = document.getElementById("bidder-select");
     const bidderId = select.value;
-    console.log(select.value)
 
+    // FIXME kind of hacky
     let user = _.filter(this.props.bidderState.bidders, function(o) {
-      return o.bidderId = bidderId;
-    })
+      return o.bidderId == bidderId;
+    })[0]
 
     const userJSON = {
       "name": user.name,
@@ -53,9 +45,12 @@ class TokenLogin extends Component {
     const bidders = this.props.bidderState.bidders;
     const bidderOptions = []
     for (var i=0; i<bidders.length; i++) {
-      bidderOptions.push(
-        <option value={bidders[i].bidderId}>{bidders[i].name}</option>
-      )
+      console.log(bidders[i].name + ' ' + bidders[i].activeConnection);
+      if (!bidders[i].activeConnection) {
+        bidderOptions.push(
+          <option value={bidders[i].bidderId}>{bidders[i].name}</option>
+        )
+      }
     }
     return (
       <div className="token-login">
