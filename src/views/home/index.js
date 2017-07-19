@@ -126,7 +126,7 @@ class Home extends Component {
             <p>This room will remain open for 24 hours</p>
             <h4>Your Room ID</h4>
             <p>{this.props.appState.roomId}</p>
-            <a href={`http://localhost:3000/${this.props.appState.roomId}`}>Click Here to go to Auction Room</a>
+            <a href={`/${this.props.appState.roomId}`}>Click Here to go to Auction Room</a>
           </div>
         </div>
       )
