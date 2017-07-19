@@ -1,15 +1,17 @@
 import * as socketActions   from '../actions/socket';
 import * as bidderActions   from '../actions/bidders';
 import * as chatActions     from '../actions/messages';
+import * as playerActions     from '../actions/players';
 import {
   SOCKET_CONNECT,
   SOCKET_DISCONNECT,
   SEND_CHAT_MESSAGE,
   VALIDATE_BIDDER,
   REQUEST_JWT,
-  FETCH_BIDDERS
+  FETCH_BIDDERS,
+  FETCH_PLAYERS
 } from '../actions/types';
-import { AUTHORIZE_TOKEN, REQUEST_TOKEN, REQUEST_BIDDERS } from '../actions/socket/payloadTypes';
+import { AUTHORIZE_TOKEN, REQUEST_TOKEN, REQUEST_BIDDERS, REQUEST_PLAYERS } from '../actions/socket/payloadTypes';
 
 const socketMiddleware = (function(){
   var socket = null;
@@ -51,6 +53,9 @@ const socketMiddleware = (function(){
         break;
       case "GET_BIDDERS":
         store.dispatch(bidderActions.receiveBidders(msg.body));
+        break;
+      case "GET_PLAYERS":
+        store.dispatch(playerActions.receivePlayers(msg.body));
         break;
       default:
         console.log("Received unknown message type: '" + msg.type + "'");
@@ -134,6 +139,11 @@ const socketMiddleware = (function(){
       case FETCH_BIDDERS:
         socket.send(JSON.stringify({
           "MessageType": REQUEST_BIDDERS
+        }));
+        break;
+      case FETCH_PLAYERS:
+        socket.send(JSON.stringify({
+          "MessageType": REQUEST_PLAYERS
         }));
         break;
       //This action is irrelevant to us, pass it on to the next middleware

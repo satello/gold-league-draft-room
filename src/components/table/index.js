@@ -6,7 +6,7 @@ import {
     Card,
     CardBlock
 } from 'reactstrap';
-import {Table, Th, Thead} from 'reactable';
+import SearchTable from 'reactable-search';
 
 /*
 * @params
@@ -19,27 +19,18 @@ import {Table, Th, Thead} from 'reactable';
 */
 const GoldLeagueTable = (props) => {
   const tableRows = props.data;
-  const tableHeadings = [];
-
-  for (var i=0; i < props.tableHeadings.length; i++) {
-    tableHeadings.push(
-      <Th column={props.tableHeadings[i].id}><span>{props.tableHeadings[i].displayName}</span></Th>
-    )
-  }
 
   return (
     <Card className="mb-4 players-wrapper">
       <CardBlock className="table-responsive">
-          <Table id={props.tableId ? props.tableId : "commodities-table"}
+          <SearchTable id={props.tableId ? props.tableId : "players-table"}
             className="table"
-            data={tableRows}
+            rows={tableRows}
+            searchPrompt="Type to Search ..."
             sortable={true}
-            defaultSort={props.defaultSort ? props.defaultSort : {}}
-            itemsPerPage={props.perPage ? props.perPage : 10}>
-              <Thead>
-                {tableHeadings}
-              </Thead>
-          </Table>
+            sortDesc={true}
+            sortBy={props.defaultSort ? props.defaultSort : {}}>
+          </SearchTable>
       </CardBlock>
     </Card>
   )

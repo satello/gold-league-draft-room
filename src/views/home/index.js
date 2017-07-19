@@ -83,7 +83,6 @@ class Home extends Component {
   }
 
   addBidder(event) {
-    console.log("here");
     event.preventDefault();
     const name = document.getElementById('name');
     const cap = document.getElementById('cap');
@@ -115,27 +114,7 @@ class Home extends Component {
   newDraftRoom() {
     // FIXME use state instead?
     // rules
-    const limitedSpots = document.getElementById("limitedSpots");
-    const allSpotsFilled = document.getElementById("allSpotsFilled");
-    const useAutoNominate = document.getElementById("useAutoNominate");
-    const minSecondsPerItem = document.getElementById("minSecondsPerItem");
-    const resetTimerOnBid = document.getElementById("resetTimerOnBid");
-    const resetSeconds = document.getElementById("resetSeconds");
-
-    const rules = {
-      "limitedSpots": limitedSpots.checked,
-      "allSpotsFilled": allSpotsFilled.checked,
-      "useAutoNominate": useAutoNominate.checked,
-      "minSecondsPerItem": parseInt(minSecondsPerItem.value),
-      "resetTimerOnBid": resetTimerOnBid.checked,
-      "resetSeconds": parseInt(resetSeconds.value)
-    }
-
-    // Google sheet
-    // TODO ignore for now
-
-    const payload = Object.assign({}, this.state, {"rules": rules});
-    this.props.openAuctionRoom(payload);
+    this.props.openAuctionRoom();
   }
 
   render() {
@@ -164,37 +143,8 @@ class Home extends Component {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-6">
-                <form className="new-room-form" onSubmit={(e) => {e.preventDefault();}}>
-                  <RulesInputs />
-                  <PlayersInput />
-                </form>
-              </div>
-              <div className="col-md-6">
-                <div className="bidder-inputs">
-                  <h3> Bidders </h3>
-                  <p> Drag the list to make a bidding order (if not using auctioneer) </p>
-                  <div className="add-bidder" onClick={this.showNewBidder.bind(this)}>Add Bidder</div>
-                  <div id="newBidderModal" className="modal">
-                    <div className="modal-content">
-                      <span className="close" onClick={this.closeModal.bind(this)}>&times;</span>
-                      <form onSubmit={this.addBidder.bind(this)}>
-                        <h4>New Bidder</h4>
-                        <label htmlFor="name">Name: </label>
-                        <input type="text" id="name" autoFocus="autofocus"/>
-                        <br />
-                        <label htmlFor="cap">Cap($): </label>
-                        <input type="number" id="cap" />
-                        <br />
-                        <label htmlFor="spots">Spots: </label>
-                        <input type="number" id="spots" />
-                        <br />
-                        <input type="submit" value="submit" />
-                      </form>
-                    </div>
-                  </div>
-                  <SortableList items={this.state.bidders} onSortEnd={this.onSortEnd} />
-                </div>
+              <div className="col-md-12">
+                
               </div>
             </div>
           </div>
@@ -206,8 +156,8 @@ class Home extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    openAuctionRoom: (payload) => {
-      dispatch(openAuctionRoom(payload));
+    openAuctionRoom: () => {
+      dispatch(openAuctionRoom());
     }
   }
 };

@@ -34,3 +34,11 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+.item-contianer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width:38%;
+}

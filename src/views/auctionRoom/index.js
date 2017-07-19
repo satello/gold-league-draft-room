@@ -9,6 +9,7 @@ import './style.scss';
 import Login from '../../components/login';
 import ChatBox from '../../containers/chatBox';
 import BiddersBox from '../../containers/biddersBox';
+import PlayerBox from '../../containers/playerBox';
 
 // actions
 import { connectSocket } from '../../actions/socket';
@@ -56,7 +57,9 @@ class AuctionRoom extends Component {
           <div className="bid-contianer">
             <BiddersBox />
           </div>
-          <div className="item-contianer"></div>
+          <div className="item-contianer">
+            <PlayerBox />
+          </div>
           <div className="chat-container">
             <ChatBox />
           </div>

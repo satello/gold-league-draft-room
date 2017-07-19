@@ -4,12 +4,17 @@ import './style.scss';
 
 const BidderAvatar = (props) => {
   const bidder = props.bidder;
+  let active = true;
+
+  if (bidder.cap === 0 || bidder.spots === 0) {
+    active = false;
+  }
   return (
-    <div className="bidder-avatar">
-      <h3>{bidder.name}</h3>
-      <p>Cap {bidder.cap}</p>
-      <p>Spots {bidder.spots}</p>
-    </div>
+      <div className={"bidder-avatar col-md-1 " + (active ? ' ' : 'inactive ') + (props.nominating ? 'nominating' : '')}>
+          <h3>{bidder.name}</h3>
+          <h2>${bidder.cap}</h2>
+          <p>Spots {bidder.spots}</p>
+      </div>
   );
 }
 

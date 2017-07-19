@@ -28,6 +28,7 @@
     "react-select": "^1.0.0-rc.3",
     "react-sortable-hoc": "^0.6.5",
     "reactable": "^0.14.1",
+    "reactable-search": "^0.2.45",
     "reactstrap": "^4.2.0",
     "recharts": "^0.21.2",
     "redux": "^3.6.0",

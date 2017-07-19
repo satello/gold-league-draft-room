@@ -18,13 +18,6 @@ class BidderBox extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    // if (!this.requestedBidders && nextProps.socketState.connected) {
-    //   this.requestedBidders = true;
-    //   this.props.getBidders();
-    // }
-  }
-
   render() {
     if (!this.props.bidderState || !this.props.bidderState.bidders) return false;
     const bidders = this.props.bidderState.bidders;
@@ -32,13 +25,15 @@ class BidderBox extends Component {
 
     for (var i=0; i < bidders.length; i++) {
       bidderAvatars.push(
-        <BidderAvatar key={"bidder-avatar-" + i} bidder={bidders[i]} />
+        <BidderAvatar key={"bidder-avatar-" + i} bidder={bidders[i]} nominating={this.props.bidderState.currentBidderId === bidders[i].bidderId}/>
       )
     }
 
     return(
       <div className="bidder-box">
-        { bidderAvatars }
+        <div className="row">
+          { bidderAvatars }
+        </div>
       </div>
     )
   }
