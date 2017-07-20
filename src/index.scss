@@ -11,10 +11,10 @@ html {
     -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+#root {
     letter-spacing: .045rem;
-    background-color: $md-blue-grey-900;
-    font-family: 'Ubuntu', sans-serif;
+    background-color: $md-blue-grey-900 !important;
+    font-family: 'Ubuntu', sans-serif !important;
 }
 *:focus {
     outline: none!important;
