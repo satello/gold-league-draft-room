@@ -10,9 +10,10 @@ import {
   VALIDATE_BIDDER,
   REQUEST_JWT,
   FETCH_BIDDERS,
-  FETCH_PLAYERS
+  FETCH_PLAYERS,
+  START_AUCTION
 } from '../actions/types';
-import { AUTHORIZE_TOKEN, REQUEST_TOKEN, REQUEST_BIDDERS, REQUEST_PLAYERS } from '../actions/socket/payloadTypes';
+import { AUTHORIZE_TOKEN, REQUEST_TOKEN, REQUEST_BIDDERS, REQUEST_PLAYERS, START_DRAFT } from '../actions/socket/payloadTypes';
 
 const socketMiddleware = (function(){
   var socket = null;
@@ -160,6 +161,10 @@ const socketMiddleware = (function(){
           "MessageType": REQUEST_PLAYERS
         }));
         break;
+      case START_AUCTION:
+        socket.send(JSON.stringify({
+          "MessageType": START_DRAFT
+        }))
       //This action is irrelevant to us, pass it on to the next middleware
       default:
         return next(action);

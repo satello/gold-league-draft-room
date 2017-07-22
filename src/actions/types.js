@@ -8,6 +8,7 @@ export const UPDATE_NOTIFICATION = 'app.UPDATE_NOTIFICATION';
 export const IS_ONBOARDING = 'app.IS_ONBOARDING';
 export const TOGGLE_NAV = 'app.TOGGLE_NAV';
 export const SHOW_AUCTION_ROOM_ID = 'app.SHOW_AUCTION_ROOM_ID';
+export const START_AUCTION = 'app.START_AUCTION';
 // websocket
 export const SOCKET_CONNECT = 'socket.SOCKET_CONNECT';
 export const SOCKET_DISCONNECT = 'socket.SOCKET_DISCONNECT';

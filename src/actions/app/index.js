@@ -21,6 +21,12 @@ export function initializeApp() {
   }
 }
 
+export function startDraft() {
+  return {
+    type: types.START_AUCTION
+  }
+}
+
 function appInitialized() {
     return {
         type: types.APP_INITIALIZED,

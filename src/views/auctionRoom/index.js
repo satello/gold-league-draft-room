@@ -14,6 +14,7 @@ import Ticker from '../../components/ticker';
 
 // actions
 import { connectSocket } from '../../actions/socket';
+import { startDraft } from '../../actions/app';
 
 
 class AuctionRoom extends Component {
@@ -27,6 +28,10 @@ class AuctionRoom extends Component {
 
     // connect to room
     this.props.connectSocket(roomId);
+  }
+
+  startDraft() {
+    this.props.startDraft();
   }
 
   render() {
@@ -55,6 +60,9 @@ class AuctionRoom extends Component {
       // MAIN APP
       return (
         <div className="AuctionRoon">
+          <div className="continue-btn">
+            <div className="new-draft-room-btn btn" onClick={this.startDraft.bind(this)}>Start Draft</div>
+          </div>
           <div className="bid-contianer">
             <BiddersBox />
             <Ticker />
@@ -75,6 +83,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     connectSocket: (roomId) => {
       dispatch(connectSocket(roomId));
+    },
+    startDraft: () => {
+      dispatch(startDraft())
     }
   }
 };
