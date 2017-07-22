@@ -24,6 +24,10 @@ export const RECIEVE_CHAT_MESSAGE = 'msg.RECIEVE_CHAT_MESSAGE';
 // bidders
 export const FETCH_BIDDERS = 'bidder.FETCH_BIDDERS';
 export const RECEIVE_BIDDERS = 'bidder.RECEIVE_BIDDERS';
+export const UPDATE_BIDDER = 'bidder.UPDATE_BIDDER';
+export const NEW_NOMINEE = 'bidder.NEW_NOMINEE';
 // players
 export const FETCH_PLAYERS = 'bidder.FETCH_PLAYERS';
 export const RECEIVE_PLAYERS = 'bidder.RECEIVE_PLAYERS';
+// time
+export const UPDATE_TICKER = 'time.UPDATE_TICKER';

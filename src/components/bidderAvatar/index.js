@@ -6,7 +6,7 @@ const BidderAvatar = (props) => {
   const bidder = props.bidder;
   let active = true;
 
-  if (bidder.cap === 0 || bidder.spots === 0) {
+  if (bidder.cap === 0 || bidder.spots === 0 || !bidder.activeConnection) {
     active = false;
   }
   return (

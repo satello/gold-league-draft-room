@@ -45,10 +45,9 @@ class TokenLogin extends Component {
     const bidders = this.props.bidderState.bidders;
     const bidderOptions = []
     for (var i=0; i<bidders.length; i++) {
-      console.log(bidders[i].name + ' ' + bidders[i].activeConnection);
       if (!bidders[i].activeConnection) {
         bidderOptions.push(
-          <option value={bidders[i].bidderId}>{bidders[i].name}</option>
+          <option key={bidders[i].bidderId} value={bidders[i].bidderId}>{bidders[i].name}</option>
         )
       }
     }

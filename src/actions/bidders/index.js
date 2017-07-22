@@ -12,3 +12,17 @@ export function receiveBidders(body) {
     payload: body.bidders
   }
 }
+
+export function updateBidder(body) {
+  return {
+    type: types.UPDATE_BIDDER,
+    payload: body.bidder
+  }
+}
+
+export function newNominee(body) {
+  return {
+    type: types.NEW_NOMINEE,
+    payload: body.bidderId
+  }
+}

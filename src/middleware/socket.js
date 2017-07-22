@@ -2,6 +2,7 @@ import * as socketActions   from '../actions/socket';
 import * as bidderActions   from '../actions/bidders';
 import * as chatActions     from '../actions/messages';
 import * as playerActions     from '../actions/players';
+import * as timeActions     from '../actions/time';
 import {
   SOCKET_CONNECT,
   SOCKET_DISCONNECT,
@@ -28,38 +29,51 @@ const socketMiddleware = (function(){
 
   const onMessage = (ws,store) => evt => {
     //Parse the JSON message received on the websocket
-    var msg = JSON.parse(evt.data);
+    // FIXME is this best way to do this?
+    const evts = evt.data.split("\n");
 
-    console.log(msg.MessageType);
-    switch(msg.MessageType) {
-      case "TOKEN_VALID":
-        store.dispatch(socketActions.validBidder());
-        break;
-      case "NEW_TOKEN":
-        localStorage.setItem('bidderId', msg.body.token);
-        store.dispatch(socketActions.authorizeBidder());
-        break;
-      case "INVALID_TOKEN":
-        // get new token
-        // store.dispatch(socketActions.requestJwt());
-        store.dispatch(socketActions.invalidBidder());
-        break;
-      case "BAD_TOKEN_REQUEST":
-        store.dispatch(socketActions.disconnectSocket());
-        break;
-      case "CHAT_MESSAGE":
-        //Dispatch an action that adds the received message to our state
-        store.dispatch(chatActions.chatMessageRecieved(msg.body));
-        break;
-      case "GET_BIDDERS":
-        store.dispatch(bidderActions.receiveBidders(msg.body));
-        break;
-      case "GET_PLAYERS":
-        store.dispatch(playerActions.receivePlayers(msg.body));
-        break;
-      default:
-        console.log("Received unknown message type: '" + msg.type + "'");
-        break;
+    for (var i=0; i<evts.length; i++) {
+      var msg = JSON.parse(evts[i]);
+
+      console.log(msg.MessageType);
+      switch(msg.MessageType) {
+        case "TOKEN_VALID":
+          store.dispatch(socketActions.validBidder());
+          break;
+        case "NEW_TOKEN":
+          localStorage.setItem('bidderId', msg.body.token);
+          store.dispatch(socketActions.authorizeBidder());
+          break;
+        case "INVALID_TOKEN":
+          // get new token
+          // store.dispatch(socketActions.requestJwt());
+          store.dispatch(socketActions.invalidBidder());
+          break;
+        case "BAD_TOKEN_REQUEST":
+          store.dispatch(socketActions.disconnectSocket());
+          break;
+        case "CHAT_MESSAGE":
+          //Dispatch an action that adds the received message to our state
+          store.dispatch(chatActions.chatMessageRecieved(msg.body));
+          break;
+        case "GET_BIDDERS":
+          store.dispatch(bidderActions.receiveBidders(msg.body));
+          break;
+        case "GET_PLAYERS":
+          store.dispatch(playerActions.receivePlayers(msg.body));
+          break;
+        case "BIDDER_STATE_CHANGE":
+          store.dispatch(bidderActions.updateBidder(msg.body));
+          break;
+        case "NEW_NOMINEE":
+          store.dispatch(bidderActions.newNominee(msg.body));
+          break;
+        case "TICKER_UPDATE":
+          store.dispatch(timeActions.updateTicker(msg.body));
+        default:
+          console.log("Received unknown message type: '" + msg.type + "'");
+          break;
+      }
     }
   }
 
