@@ -1,0 +1,13 @@
+@import '../../shared/variables';
+
+.nomination-box {
+  .nomination-btn {
+    background-color: $md-blue-grey-50;
+    cursor: not-allowed;
+  }
+
+  .nomination-btn.active {
+    background-color: $md-blue-grey-50;
+    cursor: pointer;
+  }
+}

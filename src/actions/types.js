@@ -31,5 +31,6 @@ export const NEW_NOMINEE = 'bidder.NEW_NOMINEE';
 export const FETCH_PLAYERS = 'player.FETCH_PLAYERS';
 export const RECEIVE_PLAYERS = 'player.RECEIVE_PLAYERS';
 export const SELECT_PLAYER = 'player.SELECT_PLAYER';
+export const NOMINATE_PLAYER = 'player.NOMINATE_PLAYER';
 // time
 export const UPDATE_TICKER = 'time.UPDATE_TICKER';

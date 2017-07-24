@@ -19,3 +19,10 @@ export function selectPlayer(player) {
     payload: player
   }
 }
+
+export function nominatePlayer(player) {
+  return {
+    type: types.NOMINATE_PLAYER,
+    payload: player
+  }
+}

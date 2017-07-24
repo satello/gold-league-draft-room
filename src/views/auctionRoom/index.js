@@ -42,7 +42,7 @@ class AuctionRoom extends Component {
     if (!this.props.socketState || !this.props.socketState.connected) {
       // show loading screen
       return (
-        <div className="AuctionRoon">
+        <div className="AuctionRoom">
           <div className="loading-screen">
             <div className="loader"></div>
             <p>Conecting to server...</p>
@@ -55,7 +55,7 @@ class AuctionRoom extends Component {
     // LOG IN TO DRAFT ROOM
     if (!this.props.socketState.loggedIn) {
       return (
-        <div className="AuctionRoon">
+        <div className="AuctionRoom">
           <Login roomId={this.props.params.roomId}/>
         </div>
       )
@@ -63,7 +63,9 @@ class AuctionRoom extends Component {
       // MAIN APP
       return (
         <div className="AuctionRoom">
-          
+          <div className="continue-btn">
+            <div className="new-draft-room-btn btn" onClick={this.startDraft.bind(this)}>Next Nomination</div>
+          </div>
           <div className="row">
             <div className="col-md-7">
               <div className="bid-contianer">

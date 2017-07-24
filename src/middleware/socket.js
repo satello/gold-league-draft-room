@@ -11,9 +11,10 @@ import {
   REQUEST_JWT,
   FETCH_BIDDERS,
   FETCH_PLAYERS,
-  START_AUCTION
+  START_AUCTION,
+  NOMINATE_PLAYER
 } from '../actions/types';
-import { AUTHORIZE_TOKEN, REQUEST_TOKEN, REQUEST_BIDDERS, REQUEST_PLAYERS, START_DRAFT } from '../actions/socket/payloadTypes';
+import { AUTHORIZE_TOKEN, REQUEST_TOKEN, REQUEST_BIDDERS, REQUEST_PLAYERS, START_DRAFT, NOMINATION } from '../actions/socket/payloadTypes';
 
 const socketMiddleware = (function(){
   var socket = null;
@@ -165,6 +166,16 @@ const socketMiddleware = (function(){
         socket.send(JSON.stringify({
           "MessageType": START_DRAFT
         }))
+        break;
+      case NOMINATE_PLAYER:
+        console.log("wtf");
+        const payload = JSON.stringify({
+          "MessageType": NOMINATION,
+          "body": action.payload
+        })
+        console.log(payload)
+        socket.send(payload)
+        break;
       //This action is irrelevant to us, pass it on to the next middleware
       default:
         return next(action);
