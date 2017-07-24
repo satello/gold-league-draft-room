@@ -10,10 +10,8 @@ class Ticker extends Component {
     const seconds = this.props.ticks % 60;
 
     return(
-      <div className="ticker row">
-        <div className="col-md-1">
+      <div className="ticker">
           <p>{minutes + ":" + (seconds < 10 ? "0" + seconds : seconds)}</p>
-        </div>
       </div>
     )
   }

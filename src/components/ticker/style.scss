@@ -1,8 +1,9 @@
+@import '../../shared/variables';
+
 .ticker {
   p {
-    font-size: 25px;
-    padding: 10px;
-    background-color: white;
+    font-size: 60px;
+    color: $md-red-400;
     text-align: center;
   }
 }

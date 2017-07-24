@@ -28,7 +28,8 @@ export const RECEIVE_BIDDERS = 'bidder.RECEIVE_BIDDERS';
 export const UPDATE_BIDDER = 'bidder.UPDATE_BIDDER';
 export const NEW_NOMINEE = 'bidder.NEW_NOMINEE';
 // players
-export const FETCH_PLAYERS = 'bidder.FETCH_PLAYERS';
-export const RECEIVE_PLAYERS = 'bidder.RECEIVE_PLAYERS';
+export const FETCH_PLAYERS = 'player.FETCH_PLAYERS';
+export const RECEIVE_PLAYERS = 'player.RECEIVE_PLAYERS';
+export const SELECT_PLAYER = 'player.SELECT_PLAYER';
 // time
 export const UPDATE_TICKER = 'time.UPDATE_TICKER';

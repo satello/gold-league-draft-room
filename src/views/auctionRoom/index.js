@@ -10,7 +10,10 @@ import Login from '../../components/login';
 import ChatBox from '../../containers/chatBox';
 import BiddersBox from '../../containers/biddersBox';
 import PlayerBox from '../../containers/playerBox';
+import NominationBox from '../../containers/nominationBox';
 import Ticker from '../../components/ticker';
+import PlayerAvatar from '../../components/playerAvatar';
+// import AuctionBox from '../../containers/AuctionBox';
 
 // actions
 import { connectSocket } from '../../actions/socket';
@@ -59,19 +62,30 @@ class AuctionRoom extends Component {
     } else {
       // MAIN APP
       return (
-        <div className="AuctionRoon">
-          <div className="continue-btn">
-            <div className="new-draft-room-btn btn" onClick={this.startDraft.bind(this)}>Start Draft</div>
-          </div>
-          <div className="bid-contianer">
-            <BiddersBox />
-            <Ticker />
-          </div>
-          <div className="item-contianer">
-            <PlayerBox />
-          </div>
-          <div className="chat-container">
-            <ChatBox />
+        <div className="AuctionRoom">
+          
+          <div className="row">
+            <div className="col-md-7">
+              <div className="bid-contianer">
+                <BiddersBox />
+                <Ticker />
+              </div>
+              <div className="chat-container">
+                <div className="row">
+                  <div className="col-md-8">
+                    <ChatBox />
+                  </div>
+                  <div className="col-md-4">
+                    <NominationBox />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-5">
+              <div className="item-contianer">
+                <PlayerBox />
+              </div>
+            </div>
           </div>
         </div>
       );

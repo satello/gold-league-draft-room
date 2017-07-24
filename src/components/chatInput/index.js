@@ -20,8 +20,14 @@ class ChatInput extends Component {
     return(
       <div className="chat-input">
         <form id="chat-input-form" onSubmit={this.newMessage.bind(this)}>
-            <input type="submit" value="Send" />
-            <input type="text" id="msg" size="64"/>
+            <div className="row">
+              <div className="col-md-2">
+                <input type="submit" value="Send" />
+              </div>
+              <div className="col-md-10">
+                <input type="text" id="msg" size="64"/>
+              </div>
+            </div>
         </form>
       </div>
     )

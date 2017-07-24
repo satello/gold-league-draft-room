@@ -1,44 +1,44 @@
 @import '../../shared/variables';
 
-.chat-container {
-  position: absolute;
-  bottom: .5em;
-}
+.AuctionRoom {
 
-.loading-screen {
-  margin: auto;
-  margin-top: 75px;
-  width: 20%;
+  .chat-container {
+    bottom: .5em;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .loading-screen {
+    margin: auto;
+    margin-top: 75px;
+    width: 20%;
+
+    .loader {
+      margin: auto;
+    }
+
+    p {
+      text-align: center;
+      margin-top: 15px;
+      color: $md-blue-grey-100;
+    }
+  }
 
   .loader {
-    margin: auto;
+      border: 10px solid $md-blue-grey-500; /* Light grey */
+      border-top: 10px solid $md-blue-grey-100; /* Blue */
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      animation: spin 1s linear infinite;
   }
 
-  p {
-    text-align: center;
-    margin-top: 15px;
-    color: $md-blue-grey-100;
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
   }
-}
 
-.loader {
-    border: 10px solid $md-blue-grey-500; /* Light grey */
-    border-top: 10px solid $md-blue-grey-100; /* Blue */
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.item-contianer {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width:38%;
+  .item-contianer {
+    min-height: 100vh;
+  }
 }

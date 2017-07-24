@@ -12,3 +12,10 @@ export function receivePlayers(body) {
     payload: body.players
   }
 }
+
+export function selectPlayer(player) {
+  return {
+    type: types.SELECT_PLAYER,
+    payload: player
+  }
+}

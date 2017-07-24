@@ -24,10 +24,10 @@ const GoldLeagueTable = (props) => {
     <Card className="mb-4 players-wrapper">
       <CardBlock className="table-responsive">
           <SearchTable id={props.tableId ? props.tableId : "players-table"}
-            className="table"
             rows={tableRows}
             searchPrompt="Type to Search ..."
             sortable={true}
+            onRender={props.onRender}
             sortDesc={true}
             sortBy={props.defaultSort ? props.defaultSort : {}}>
           </SearchTable>

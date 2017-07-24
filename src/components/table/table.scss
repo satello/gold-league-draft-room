@@ -1,6 +1,11 @@
-#commodities-table .reactable-data tr:hover {
-  cursor: pointer;
-  background-color: #f2f2f2;
+#players-table {
+  overflow-y: scroll;
+  tbody {
+    tr:hover {
+      cursor: pointer;
+      background-color: #f2f2f2;
+    }
+  }
 }
 
 .commodities-wrapper .btn {

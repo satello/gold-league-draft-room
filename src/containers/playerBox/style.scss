@@ -1,9 +1,11 @@
 @import '../../shared/variables';
 
 .players-box {
-  height: 100%;
+  height: 100vh;
   overflow-y: scroll;
   background-color: $md-blue-grey-50;
+  position: relative;
+  z-index: 100;
 
   .players-wrapper {
     background-color: $md-blue-grey-50;
