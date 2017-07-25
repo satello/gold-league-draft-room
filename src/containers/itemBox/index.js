@@ -12,6 +12,10 @@ import * as bidderActions from '../../actions/bidders';
 
 class ItemBox extends Component {
 
+  componentDidUpdate() {
+    document.getElementById("bidInput").value = (this.props.bidderState.currentBid + 1);
+  }
+
   inputBid() {
     const bidderId = localStorage.getItem("bidderId");
     if (!this.props.bidderState.currentPlayerName) return;
@@ -42,7 +46,7 @@ class ItemBox extends Component {
       playerDiv = <PlayerAvatar player={player} />
       const topBidder = this.getBidderById(this.props.bidderState.currentBidderId);
       topBidderNameDiv = (
-        <p className="top-bidder-name">topBidder.name</p>
+        <p className="top-bidder-name">{topBidder.name}</p>
       )
     } else {
       playerDiv = <PlayerAvatar player={{name: "Waiting for nomination", position: "N/A", bye: 0}} />
@@ -50,18 +54,18 @@ class ItemBox extends Component {
     return (
       <div className="item-box">
         <div className="row">
-          <div className="col-md-2">
+          <div className="col-md-3">
             <Ticker />
           </div>
-          <div className="col-md-2">
+          <div className="col-md-3">
             {playerDiv}
           </div>
-          <div className="col-md-2 price">
+          <div className="col-md-3 price">
             {topBidderNameDiv}
             <h3>{"$" + (this.props.bidderState.currentBid ? this.props.bidderState.currentBid : '0')}</h3>
           </div>
-          <div className="col-md-2">
-            <input id="bidInput" type="number" defaultValue={(this.props.bidderState.currentBid + 1)} />
+          <div className="col-md-3 bid-input">
+            <input id="bidInput" type="number" step="1"/>
             <div className={"btn bid-btn" + (this.props.bidderState.currentPlayerName ? " active" : "")} onClick={this.inputBid.bind(this)}>Place Bid</div>
           </div>
         </div>

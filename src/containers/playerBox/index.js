@@ -35,24 +35,30 @@ class PlayerBox extends Component {
     return false;
   }
 
-  componentDidUpdate(prevProps) {
-    // console.log("updating shit");
-    // const rows = $("#players-table tbody tr");
-    //
-    // for (var i=0; i<rows.length; i++) {
-    //   rows[i].onclick = this.selectPlayer.bind(this);
-    // }
-  }
-
   render() {
     if (!this.props.playerState || !this.props.playerState.playersLoaded) return false;
     const players = this.props.playerState.players;
 
     // FIXME this is dumb AF stupid ass table library
+    let player;
+    const data = [];
     for (var i=0; i<players.length; i++) {
       // need to store each name as a const. yuck
-      const playerName=players[i].name;
-      players[i].onClick = () => { this.selectPlayer(playerName) };
+      const playerData = {}
+      player = players[i]
+
+      playerData.cells = {
+        name: player.name,
+        position: player.position,
+        bye: player.bye,
+        value: player.value
+      }
+
+      if (!player.taken) {
+        const playerName=players[i].name;
+        playerData.onClick = () => { this.selectPlayer(playerName) };
+        data.push(playerData);
+      }
     }
 
     const settings = {
@@ -62,7 +68,7 @@ class PlayerBox extends Component {
 
     return(
       <div className="players-box">
-        <PlayerTable tableId="players-table" tableHeadings={tableHeadings} data={players} defaultSort="value"/>
+        <PlayerTable tableId="players-table" tableHeadings={tableHeadings} data={data} defaultSort="value"/>
       </div>
     )
   }

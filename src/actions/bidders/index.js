@@ -28,8 +28,24 @@ export function newNominee(body) {
 }
 
 export function newPlayerNomination(body) {
+  return dispatch => {
+    // display new nomination
+    dispatch(bidderNomination(body));
+    // remove player from nomination pool
+    // dispatch(removePlayerFromPool(body));
+  }
+}
+
+function bidderNomination(body) {
   return {
     type: types.NEW_PLAYER_NOMINATION,
+    payload: body
+  }
+}
+
+function removePlayerFromPool(body) {
+  return {
+    type: types.REMOVE_PLAYER_FROM_POOL,
     payload: body
   }
 }

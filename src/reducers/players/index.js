@@ -19,11 +19,13 @@ export default function playerState(state = initialState, action = {}) {
       const playerObject = _.filter(state.players, function(o) {
         return o.name == action.payload;
       })[0];
-      console.log("REDUCER");
-      console.log(playerObject);
-      console.log(action.payload);
-
       return Object.assign({}, state, {selectedPlayer: playerObject});
+    // case types.REMOVE_PLAYER_FROM_POOL:
+    //   // only filter out player
+    //   const players = _.filter(state.players, function(o) {
+    //     return o.name !== action.payload.name;
+    //   });
+    //   return Object.assign({}, state, {players: players})
     default:
       return state;
   }

@@ -25,7 +25,11 @@ export default function bidderState(state = initialState, action = {}) {
         )
       }
     case types.NEW_NOMINEE:
-      return Object.assign({}, state, {currentNominatorId: action.payload});
+      return Object.assign({}, state, {
+        currentNominatorId: action.payload,
+        currentPlayerName: null,
+        currentBid: null,
+        currentBidderId: null});
     case types.NEW_PLAYER_NOMINATION:
       // TODO make this and NEW_PLAYER_BID into one?
       return Object.assign({}, state, {

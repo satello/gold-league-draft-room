@@ -11,9 +11,11 @@ const BidderAvatar = (props) => {
   }
   return (
       <div className={"bidder-avatar col-md-1 " + (active ? ' ' : 'inactive ') + (props.nominating ? 'nominating' : '')}>
+        <div className="bidder-avatar-text">
           <h3>{bidder.name}</h3>
           <h2>${bidder.cap}</h2>
           <p>Spots {bidder.spots}</p>
+        </div>
       </div>
   );
 }

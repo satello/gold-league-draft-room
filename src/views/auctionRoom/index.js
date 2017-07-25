@@ -60,9 +60,9 @@ class AuctionRoom extends Component {
     } else {
       // MAIN APP
       return (
-        <div className="AuctionRoom">
+        <div className="AuctionRoom main-view">
           <div className="continue-btn">
-            <div className="new-draft-room-btn btn" onClick={this.startDraft.bind(this)}>Next Nomination</div>
+            <div className="new-draft-room-btn btn" onClick={this.startDraft.bind(this)}>Start Draft</div>
           </div>
           <div className="row">
             <div className="col-md-7">
@@ -71,7 +71,7 @@ class AuctionRoom extends Component {
                 <ItemBox />
               </div>
               <div className="chat-container">
-                <div className="row">
+                <div className="row chat-nomination">
                   <div className="col-md-8">
                     <ChatBox />
                   </div>

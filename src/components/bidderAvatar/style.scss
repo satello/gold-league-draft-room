@@ -2,29 +2,29 @@
 
 
 .bidder-avatar {
-  padding: 1px 1px 1px 1px;
   background-color: $md-blue-grey-500;
-  width: 100%;
-  border: 1px solid black;
   text-align: center;
+  border: 1px solid black;
   color: $md-blue-grey-50;
 
+  .bidder-avatar-text {
+    h3 {
+      font-size: 0.8em;
+    }
 
-  h3 {
-    font-size: 0.8em;
-  }
+    p {
+      font-size: 10px;
+    }
 
-  p {
-    font-size: 10px;
-  }
-
-  h2 {
-    font-size: 18px;
+    h2 {
+      font-size: 18px;
+    }
   }
 }
 
 .bidder-avatar.inactive {
   background-color: $md-blue-grey-800;
+  color: $md-red-400;
 }
 
 .bidder-avatar.nominating {

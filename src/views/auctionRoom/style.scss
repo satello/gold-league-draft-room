@@ -3,9 +3,17 @@
 .AuctionRoom {
 
   .chat-container {
-    bottom: .5em;
     width: 100%;
     z-index: 1;
+    background-color: #212121;
+    margin: 0;
+    height: auto;
+
+    .chat-nomination {
+      vertical-align: middle;
+      position: relative;
+      bottom: 0;
+    }
   }
 
   .loading-screen {
@@ -38,7 +46,24 @@
       100% { transform: rotate(360deg); }
   }
 
-  .item-contianer {
-    min-height: 100vh;
+  .continue-btn {
+    position: fixed;
+    top: 1.3em;
+    right: 1.3em;
   }
+
+  .new-draft-room-btn {
+    margin-top: 50px;
+    width: 180px;
+    margin: auto;
+    text-align: center;
+    background-color: $md-green-400;
+    cursor: pointer;
+    border-radius: 5px;
+    color: black;
+  }
+}
+
+.AuctionRoom.main-view {
+    background-color: #212121;
 }

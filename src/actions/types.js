@@ -36,5 +36,6 @@ export const FETCH_PLAYERS = 'player.FETCH_PLAYERS';
 export const RECEIVE_PLAYERS = 'player.RECEIVE_PLAYERS';
 export const SELECT_PLAYER = 'player.SELECT_PLAYER';
 export const NOMINATE_PLAYER = 'player.NOMINATE_PLAYER';
+export const REMOVE_PLAYER_FROM_POOL = 'player.REMOVE_PLAYER_FROM_POOL';
 // time
 export const UPDATE_TICKER = 'time.UPDATE_TICKER';
