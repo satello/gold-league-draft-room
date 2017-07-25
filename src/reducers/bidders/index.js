@@ -3,7 +3,10 @@ import * as types from '../../actions/types';
 const initialState = {
   biddersLoaded: false,
   bidders: [],
-  currentBidderId: null,
+  currentNominatorId: null,
+  currentPlayerName: null,
+  currentBid: null,
+  currentBidderId: null
 };
 
 export default function bidderState(state = initialState, action = {}) {
@@ -22,9 +25,20 @@ export default function bidderState(state = initialState, action = {}) {
         )
       }
     case types.NEW_NOMINEE:
-      const bidderId = action.payload;
-
-      return Object.assign({}, state, {currentBidderId: bidderId});
+      return Object.assign({}, state, {currentNominatorId: action.payload});
+    case types.NEW_PLAYER_NOMINATION:
+      // TODO make this and NEW_PLAYER_BID into one?
+      return Object.assign({}, state, {
+        currentPlayerName: action.payload.name,
+        currentBid: action.payload.bid,
+        currentBidderId: action.payload.bidderId
+      });
+    case types.NEW_PLAYER_BID:
+      return Object.assign({}, state, {
+        currentPlayerName: action.payload.name,
+        currentBid: action.payload.bid,
+        currentBidderId: action.payload.bidderId
+      });
     default:
       return state;
   }

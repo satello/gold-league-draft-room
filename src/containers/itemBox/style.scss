@@ -1,0 +1,24 @@
+@import '../../shared/variables';
+
+.item-box {
+  .bid-btn {
+    background-color: $md-blue-grey-50;
+    cursor: not-allowed;
+  }
+
+  .bid-btn.active {
+    background-color: $md-blue-grey-50;
+    cursor: pointer;
+  }
+
+  .price {
+
+    h3 {
+      font-size: 40px;
+      color: white;
+      text-align: center;
+      vertical-align: middle;
+      display: inline-block;
+    }
+  }
+}

@@ -25,7 +25,7 @@ class BidderBox extends Component {
 
     for (var i=0; i < bidders.length; i++) {
       bidderAvatars.push(
-        <BidderAvatar key={"bidder-avatar-" + i} bidder={bidders[i]} nominating={this.props.bidderState.currentBidderId === bidders[i].bidderId}/>
+        <BidderAvatar key={"bidder-avatar-" + i} bidder={bidders[i]} nominating={this.props.bidderState.currentNominatorId === bidders[i].bidderId}/>
       )
     }
 

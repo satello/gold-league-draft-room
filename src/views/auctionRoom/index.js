@@ -10,10 +10,8 @@ import Login from '../../components/login';
 import ChatBox from '../../containers/chatBox';
 import BiddersBox from '../../containers/biddersBox';
 import PlayerBox from '../../containers/playerBox';
+import ItemBox from '../../containers/itemBox';
 import NominationBox from '../../containers/nominationBox';
-import Ticker from '../../components/ticker';
-import PlayerAvatar from '../../components/playerAvatar';
-// import AuctionBox from '../../containers/AuctionBox';
 
 // actions
 import { connectSocket } from '../../actions/socket';
@@ -70,7 +68,7 @@ class AuctionRoom extends Component {
             <div className="col-md-7">
               <div className="bid-contianer">
                 <BiddersBox />
-                <Ticker />
+                <ItemBox />
               </div>
               <div className="chat-container">
                 <div className="row">

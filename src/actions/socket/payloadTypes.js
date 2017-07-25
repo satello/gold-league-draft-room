@@ -6,3 +6,4 @@ export const REQUEST_BIDDERS = 'getBidders';
 export const REQUEST_PLAYERS = 'getPlayers';
 export const START_DRAFT = 'nextNomination';
 export const NOMINATION = 'nominatePlayer';
+export const BID = 'bid';

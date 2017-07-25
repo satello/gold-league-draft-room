@@ -13,7 +13,7 @@ class NominationBox extends Component {
   nominatePlayer() {
     const bidderId = localStorage.getItem("bidderId");
     if (!this.props.playerState.selectedPlayer) return;
-    if (!this.props.bidderState.currentBidderId === localStorage.getItem("bidderId")) return;
+    if (this.props.bidderState.currentNominatorId !== bidderId) return;
     this.props.nominatePlayer(Object.assign({}, {name: this.props.playerState.selectedPlayer.name}, {bidderId: bidderId}));
   }
 
@@ -29,7 +29,7 @@ class NominationBox extends Component {
     return (
       <div className="nomination-box">
         {playerDiv}
-        <div className={"btn nomination-btn" + (this.props.bidderState.currentBidderId === localStorage.getItem("bidderId") ? " active" : "")} onClick={this.nominatePlayer.bind(this)}>Nominate</div>
+        <div className={"btn nomination-btn" + (this.props.bidderState.currentNominatorId === localStorage.getItem("bidderId") ? " active" : "")} onClick={this.nominatePlayer.bind(this)}>Nominate</div>
       </div>
     )
   }

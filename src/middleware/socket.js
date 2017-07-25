@@ -12,9 +12,10 @@ import {
   FETCH_BIDDERS,
   FETCH_PLAYERS,
   START_AUCTION,
-  NOMINATE_PLAYER
+  NOMINATE_PLAYER,
+  PLACE_BID
 } from '../actions/types';
-import { AUTHORIZE_TOKEN, REQUEST_TOKEN, REQUEST_BIDDERS, REQUEST_PLAYERS, START_DRAFT, NOMINATION } from '../actions/socket/payloadTypes';
+import { AUTHORIZE_TOKEN, REQUEST_TOKEN, REQUEST_BIDDERS, REQUEST_PLAYERS, START_DRAFT, NOMINATION, BID } from '../actions/socket/payloadTypes';
 
 const socketMiddleware = (function(){
   var socket = null;
@@ -72,6 +73,13 @@ const socketMiddleware = (function(){
           break;
         case "TICKER_UPDATE":
           store.dispatch(timeActions.updateTicker(msg.body));
+          break;
+        case "NEW_PLAYER_NOMINEE":
+          store.dispatch(bidderActions.newPlayerNomination(msg.body));
+          break;
+        case "NEW_PLAYER_BID":
+          store.dispatch(bidderActions.newPlayerBid(msg.body));
+          break;
         default:
           console.log("Received unknown message type: '" + msg.type + "'");
           break;
@@ -168,13 +176,16 @@ const socketMiddleware = (function(){
         }))
         break;
       case NOMINATE_PLAYER:
-        console.log("wtf");
-        const payload = JSON.stringify({
+        socket.send(JSON.stringify({
           "MessageType": NOMINATION,
           "body": action.payload
-        })
-        console.log(payload)
-        socket.send(payload)
+        }));
+        break;
+      case PLACE_BID:
+        socket.send(JSON.stringify({
+          "MessageType": BID,
+          "body": action.payload
+        }));
         break;
       //This action is irrelevant to us, pass it on to the next middleware
       default:
