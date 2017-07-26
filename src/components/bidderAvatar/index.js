@@ -15,11 +15,13 @@ const BidderAvatar = (props) => {
     eligible = false;
   }
   return (
-      <div className={"bidder-avatar col-md-1" + (active ? ' ' : ' inactive') + (props.nominating ? ' nominating' : '') + (eligible ? ' ' : ' ineligible')}>
-        <div className="bidder-avatar-text">
-          <h3>{bidder.name}</h3>
-          <h2>${bidder.cap}</h2>
-          <p>Spots {bidder.spots}</p>
+      <div className="bidder-avatar-container">
+        <div className={"bidder-avatar col-md-1" + (active ? ' ' : ' inactive') + (props.nominating ? ' nominating' : '') + (eligible ? ' ' : ' ineligible')}>
+          <div className="bidder-avatar-text">
+            <h3>{bidder.name}</h3>
+            <h2>${bidder.cap}</h2>
+            <p>Spots {bidder.spots}</p>
+          </div>
         </div>
       </div>
   );

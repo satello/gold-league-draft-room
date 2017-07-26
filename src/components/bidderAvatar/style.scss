@@ -1,37 +1,39 @@
 @import '../../shared/variables';
 
+.bidder-avatar-container {
+  .bidder-avatar {
+    background-color: $md-blue-grey-500;
+    text-align: center;
+    border: 1px solid black;
+    color: $md-blue-grey-50;
+    padding: 0;
 
-.bidder-avatar {
-  background-color: $md-blue-grey-500;
-  text-align: center;
-  border: 1px solid black;
-  color: $md-blue-grey-50;
+    .bidder-avatar-text {
+      h3 {
+        margin: 5px 0px 5px 0px;
+        font-size: 0.8em;
+      }
 
-  .bidder-avatar-text {
-    h3 {
-      margin: 5px 0px 5px 0px;
-      font-size: 0.8em;
-    }
+      p {
+        margin: 2px 0px 2px 0px;
+        font-size: 10px;
+      }
 
-    p {
-      margin: 2px 0px 2px 0px;
-      font-size: 10px;
-    }
-
-    h2 {
-      margin: 3px 0px 3px 0px;
-      font-size: 18px;
+      h2 {
+        margin: 3px 0px 3px 0px;
+        font-size: 18px;
+      }
     }
   }
-}
 
-.bidder-avatar.inactive {
-  background-color: $md-blue-grey-800;
-}
+  .bidder-avatar.inactive {
+    background-color: $md-blue-grey-800;
+  }
 
-.bidder-avatar.ineligible {
-  color: $md-red-400;
-}
-.bidder-avatar.nominating {
-  border-bottom: 7px solid $md-green-400;
+  .bidder-avatar.ineligible {
+    color: $md-red-400;
+  }
+  .bidder-avatar.nominating {
+    border-bottom: 7px solid $md-green-400;
+  }
 }
