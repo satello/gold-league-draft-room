@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import $ from 'jquery';
 
 import './style.scss';
 
-import BidderAvatar from '../../components/bidderAvatar';
 import PlayerTable from '../../components/table';
 
 import * as playerActions from '../../actions/players';
@@ -17,9 +15,6 @@ const tableHeadings = [
 ]
 
 class PlayerBox extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentWillMount() {
     if (!this.props.playerState.playersLoaded) {
       this.props.getPlayers();
@@ -31,7 +26,7 @@ class PlayerBox extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    if (this.props.playerState.players.length != nextProps.playerState.players.length) return true;
+    if (this.props.playerState.players.length !== nextProps.playerState.players.length) return true;
     return false;
   }
 
@@ -59,11 +54,6 @@ class PlayerBox extends Component {
         playerData.onClick = () => { this.selectPlayer(playerName) };
         data.push(playerData);
       }
-    }
-
-    const settings = {
-      sortVal: "value",
-      direction: "desc"
     }
 
     return(

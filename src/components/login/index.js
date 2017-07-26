@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
 import _ from 'lodash';
 
 import { fetchBidders } from '../../actions/bidders';
@@ -23,7 +22,7 @@ class TokenLogin extends Component {
 
     // FIXME kind of hacky
     let user = _.filter(this.props.bidderState.bidders, function(o) {
-      return o.bidderId == bidderId;
+      return o.bidderId === bidderId;
     })[0]
 
     const userJSON = {

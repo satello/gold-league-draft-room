@@ -66,7 +66,7 @@ class AuctionRoom extends Component {
           </div>
           <div className="row">
             <div className="col-md-7">
-              <div className="bid-contianer">
+              <div className="bid-container">
                 <BiddersBox />
                 <ItemBox />
               </div>
@@ -82,7 +82,7 @@ class AuctionRoom extends Component {
               </div>
             </div>
             <div className="col-md-5">
-              <div className="item-contianer">
+              <div className="item-container">
                 <PlayerBox />
               </div>
             </div>

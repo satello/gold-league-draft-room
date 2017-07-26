@@ -12,8 +12,13 @@ import * as bidderActions from '../../actions/bidders';
 
 class ItemBox extends Component {
 
-  componentDidUpdate() {
-    document.getElementById("bidInput").value = (this.props.bidderState.currentBid + 1);
+  componentDidUpdate(prevProps) {
+    if (prevProps.bidderState.currentBid !== this.props.bidderState.currentBid) {
+      const bidInputDiv = document.getElementById("bidInput");
+      if (bidInputDiv.value <= this.props.bidderState.currentBid) {
+        bidInputDiv.value = (this.props.bidderState.currentBid + 1);
+      }
+    }
   }
 
   inputBid() {
@@ -21,7 +26,7 @@ class ItemBox extends Component {
     if (!this.props.bidderState.currentPlayerName) return;
     const bidAmount = document.getElementById('bidInput').value;
     if (!bidAmount) return;
-    this.props.bidOnPlayer(Object.assign({}, {amount: parseInt(bidAmount)}, {bidderId: bidderId}));
+    this.props.bidOnPlayer(Object.assign({}, {amount: parseInt(bidAmount, 10)}, {bidderId: bidderId}));
   }
 
   getPlayerByName(name) {

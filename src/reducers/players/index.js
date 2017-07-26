@@ -17,7 +17,7 @@ export default function playerState(state = initialState, action = {}) {
     case types.SELECT_PLAYER:
       // FIXME probably not that efficient
       const playerObject = _.filter(state.players, function(o) {
-        return o.name == action.payload;
+        return o.name === action.payload;
       })[0];
       return Object.assign({}, state, {selectedPlayer: playerObject});
     // case types.REMOVE_PLAYER_FROM_POOL:
