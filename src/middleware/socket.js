@@ -80,6 +80,9 @@ const socketMiddleware = (function(){
         case "NEW_PLAYER_BID":
           store.dispatch(bidderActions.newPlayerBid(msg.body));
           break;
+        case "INIT_DRAFT_STATE":
+          store.dispatch(bidderActions.initDraftState(msg.body));
+          break;
         default:
           console.log("Received unknown message type: '" + msg.type + "'");
           break;

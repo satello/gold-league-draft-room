@@ -63,3 +63,10 @@ export function placeBid(body) {
     payload: body
   }
 }
+
+export function initDraftState(body) {
+  return {
+    type: types.INIT_DRAFT_STATE,
+    payload: body.draftState
+  }
+}

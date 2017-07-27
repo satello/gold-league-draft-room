@@ -30,6 +30,7 @@ export const NEW_NOMINEE = 'bidder.NEW_NOMINEE';
 export const NEW_PLAYER_NOMINATION = 'bidder.NEW_PLAYER_NOMINATION';
 export const NEW_PLAYER_BID = 'bidder.NEW_PLAYER_BID';
 export const PLACE_BID = 'bidder.PLACE_BID';
+export const INIT_DRAFT_STATE = 'bidder.INIT_DRAFT_STATE';
 
 // players
 export const FETCH_PLAYERS = 'player.FETCH_PLAYERS';

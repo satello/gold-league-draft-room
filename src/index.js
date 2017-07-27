@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createDevTools } from 'redux-devtools'
-import LogMonitor from 'redux-devtools-log-monitor'
-import DockMonitor from 'redux-devtools-dock-monitor'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
@@ -30,17 +27,6 @@ import * as appActions from './actions/app';
 // import { authorizeBidder } from './actions/socket';
 
 
-const DevTools = createDevTools(
-    <DockMonitor
-        toggleVisibilityKey="ctrl-h"
-        changePositionKey="ctrl-q"
-        defaultPosition="right"
-        defaultIsVisible={false}
-    >
-        <LogMonitor theme="tomorrow" preserveScrollTop={false} />
-    </DockMonitor>
-);
-
 const store = createStore(
     combineReducers({
         ...reducers,
@@ -48,7 +34,6 @@ const store = createStore(
     }),
     compose(
         applyMiddleware(thunk, socketMiddleware),
-        DevTools.instrument()
     )
 );
 
@@ -109,7 +94,6 @@ class Index {
               <Route component={Page404} path="404"/>
               <Redirect from="*" to="404"/>
             </Router>/>
-            <DevTools />
           </div>
         </Provider>,
         document.getElementById('root')
