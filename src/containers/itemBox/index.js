@@ -28,6 +28,8 @@ class ItemBox extends Component {
   }
 
   inputBid() {
+    // no nominating if paused
+    if (this.props.appState.paused) return;
     const bidderId = localStorage.getItem("bidderId");
     // if no player up for bid
     if (!this.props.bidderState.currentPlayerName) return;

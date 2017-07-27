@@ -11,8 +11,12 @@ import * as playerActions from '../../actions/players'
 class NominationBox extends Component {
 
   nominatePlayer() {
+    // no nominating if paused
+    if (this.props.appState.paused) return;
     const bidderId = localStorage.getItem("bidderId");
+    // if nothing to nominate don't do it
     if (!this.props.playerState.selectedPlayer) return;
+    // make sure bidder is allowed to nominate
     if (this.props.bidderState.currentNominatorId !== bidderId) return;
     this.props.nominatePlayer(Object.assign({}, {name: this.props.playerState.selectedPlayer.name}, {bidderId: bidderId}));
   }

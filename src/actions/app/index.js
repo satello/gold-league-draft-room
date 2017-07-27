@@ -20,8 +20,46 @@ export function initializeApp() {
 }
 
 export function startDraft() {
+  return dispatch => {
+    dispatch(startDraftRequest());
+    // FIXME I am being lazy and cheating here. should wait for server response
+    dispatch(draftStarted());
+  }
+}
+
+function startDraftRequest() {
   return {
-    type: types.START_AUCTION
+    type: types.START_AUCTION_REQUEST
+  }
+}
+
+function draftStarted() {
+  return {
+    type: types.START_DRAFT
+  }
+}
+
+export function pauseDraft() {
+  return {
+    type: types.PAUSE_DRAFT_REQUEST
+  }
+}
+
+export function draftPaused() {
+  return {
+    type: types.PAUSE_DRAFT
+  }
+}
+
+export function resumeDraft() {
+  return {
+    type: types.RESUME_DRAFT_REQUEST
+  }
+}
+
+export function draftResumed() {
+  return {
+    type: types.UNPAUSE_DRAFT
   }
 }
 

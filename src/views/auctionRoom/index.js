@@ -15,7 +15,7 @@ import NominationBox from '../../containers/nominationBox';
 
 // actions
 import { connectSocket } from '../../actions/socket';
-import { startDraft } from '../../actions/app';
+import { startDraft, pauseDraft, resumeDraft } from '../../actions/app';
 
 
 class AuctionRoom extends Component {
@@ -33,6 +33,14 @@ class AuctionRoom extends Component {
 
   startDraft() {
     this.props.startDraft();
+  }
+
+  pauseDraft() {
+    this.props.pauseDraft();
+  }
+
+  resumeDraft() {
+    this.props.resumeDraft();
   }
 
   render() {
@@ -59,10 +67,22 @@ class AuctionRoom extends Component {
       )
     } else {
       // MAIN APP
+      let startPauseBtn;
+      if (!this.props.appState.isRunning) {
+        // if draft isn't running yet show start draft button
+        startPauseBtn = (<div className="new-draft-room-btn btn" onClick={this.startDraft.bind(this)}>Start Draft</div>);
+      } else if (!this.props.appState.paused) {
+        // show pause button
+        startPauseBtn = (<div className="new-draft-room-btn btn" onClick={this.pauseDraft.bind(this)}>Pause Draft</div>);
+      } else {
+        // show resume button
+        startPauseBtn = (<div className="new-draft-room-btn btn" onClick={this.resumeDraft.bind(this)}>Resume Draft</div>);
+      }
+
       return (
         <div className="AuctionRoom main-view">
           <div className="continue-btn">
-            <div className="new-draft-room-btn btn" onClick={this.startDraft.bind(this)}>Start Draft</div>
+            {startPauseBtn}
           </div>
           <div className="row">
             <div className="col-md-7">
@@ -100,7 +120,13 @@ const mapDispatchToProps = (dispatch) => {
     },
     startDraft: () => {
       dispatch(startDraft())
-    }
+    },
+    pauseDraft: () => {
+      dispatch(pauseDraft())
+    },
+    resumeDraft: () => {
+      dispatch(resumeDraft())
+    },
   }
 };
 

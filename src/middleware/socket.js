@@ -3,6 +3,7 @@ import * as bidderActions   from '../actions/bidders';
 import * as chatActions     from '../actions/messages';
 import * as playerActions     from '../actions/players';
 import * as timeActions     from '../actions/time';
+import * as appActions     from '../actions/app';
 import {
   SOCKET_CONNECT,
   SOCKET_DISCONNECT,
@@ -11,11 +12,13 @@ import {
   REQUEST_JWT,
   FETCH_BIDDERS,
   FETCH_PLAYERS,
-  START_AUCTION,
+  START_AUCTION_REQUEST,
+  PAUSE_DRAFT_REQUEST,
+  RESUME_DRAFT_REQUEST,
   NOMINATE_PLAYER,
   PLACE_BID
 } from '../actions/types';
-import { AUTHORIZE_TOKEN, REQUEST_TOKEN, REQUEST_BIDDERS, REQUEST_PLAYERS, START_DRAFT, NOMINATION, BID } from '../actions/socket/payloadTypes';
+import * as serverTypes from '../actions/socket/payloadTypes';
 
 const socketMiddleware = (function(){
   var socket = null;
@@ -83,6 +86,12 @@ const socketMiddleware = (function(){
         case "INIT_DRAFT_STATE":
           store.dispatch(bidderActions.initDraftState(msg.body));
           break;
+        case "DRAFT_PAUSED":
+          store.dispatch(appActions.draftPaused());
+          break;
+        case "DRAFT_RESUMED":
+          store.dispatch(appActions.draftResumed());
+          break;
         default:
           console.log("Received unknown message type: '" + msg.type + "'");
           break;
@@ -131,7 +140,7 @@ const socketMiddleware = (function(){
           console.log("uh oh");
         }
         const authJson = {
-          "MessageType": REQUEST_TOKEN,
+          "MessageType": serverTypes.REQUEST_TOKEN,
           "body": {
             "name": userInfo.name,
             "cap": parseInt(userInfo.cap, 10),
@@ -153,7 +162,7 @@ const socketMiddleware = (function(){
         }
         // credientials exist. verify they are valid
         socket.send(JSON.stringify({
-          "MessageType": AUTHORIZE_TOKEN,
+          "MessageType": serverTypes.AUTHORIZE_TOKEN,
           "body": {
             "token": bidderId
           }
@@ -165,29 +174,40 @@ const socketMiddleware = (function(){
         break;
       case FETCH_BIDDERS:
         socket.send(JSON.stringify({
-          "MessageType": REQUEST_BIDDERS
+          "MessageType": serverTypes.REQUEST_BIDDERS
         }));
         break;
       case FETCH_PLAYERS:
         socket.send(JSON.stringify({
-          "MessageType": REQUEST_PLAYERS
+          "MessageType": serverTypes.REQUEST_PLAYERS
         }));
         break;
-      case START_AUCTION:
+      case START_AUCTION_REQUEST:
+        console.log("in middleware");
         socket.send(JSON.stringify({
-          "MessageType": START_DRAFT
+          "MessageType": serverTypes.START_DRAFT
         }))
         break;
       case NOMINATE_PLAYER:
         socket.send(JSON.stringify({
-          "MessageType": NOMINATION,
+          "MessageType": serverTypes.NOMINATION,
           "body": action.payload
         }));
         break;
       case PLACE_BID:
         socket.send(JSON.stringify({
-          "MessageType": BID,
+          "MessageType": serverTypes.BID,
           "body": action.payload
+        }));
+        break;
+      case PAUSE_DRAFT_REQUEST:
+        socket.send(JSON.stringify({
+          "MessageType": serverTypes.PAUSE_DRAFT,
+        }));
+        break;
+      case RESUME_DRAFT_REQUEST:
+        socket.send(JSON.stringify({
+          "MessageType": serverTypes.RESUME_DRAFT,
         }));
         break;
       //This action is irrelevant to us, pass it on to the next middleware

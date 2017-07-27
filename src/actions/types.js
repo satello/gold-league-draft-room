@@ -8,7 +8,14 @@ export const UPDATE_NOTIFICATION = 'app.UPDATE_NOTIFICATION';
 export const IS_ONBOARDING = 'app.IS_ONBOARDING';
 export const TOGGLE_NAV = 'app.TOGGLE_NAV';
 export const SHOW_AUCTION_ROOM_ID = 'app.SHOW_AUCTION_ROOM_ID';
-export const START_AUCTION = 'app.START_AUCTION';
+export const START_AUCTION_REQUEST = 'app.START_AUCTION_REQUEST';
+export const START_DRAFT = 'app.START_DRAFT';
+export const PAUSE_DRAFT = 'app.PAUSE_DRAFT';
+export const PAUSE_DRAFT_REQUEST = 'app.PAUSE_DRAFT_REQUEST';
+export const UNPAUSE_DRAFT = 'app.UNPAUSE_DRAFT';
+export const RESUME_DRAFT_REQUEST = 'app.RESUME_DRAFT_REQUEST';
+export const END_DRAFT = 'app.END_DRAFT';
+export const INIT_APP_STATE = 'app.INIT_APP_STATE';
 // websocket
 export const SOCKET_CONNECT = 'socket.SOCKET_CONNECT';
 export const SOCKET_DISCONNECT = 'socket.SOCKET_DISCONNECT';
