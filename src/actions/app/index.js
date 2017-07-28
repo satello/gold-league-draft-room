@@ -71,7 +71,6 @@ function appInitialized() {
 }
 
 export function openAuctionRoom(payload) {
-  console.log(payload);
   return dispatch => {
     fetch(`${API_ENDPOINT}/new-room`, {
         method: 'POST',

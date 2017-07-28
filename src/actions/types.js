@@ -47,3 +47,5 @@ export const NOMINATE_PLAYER = 'player.NOMINATE_PLAYER';
 export const REMOVE_PLAYER_FROM_POOL = 'player.REMOVE_PLAYER_FROM_POOL';
 // time
 export const UPDATE_TICKER = 'time.UPDATE_TICKER';
+// drafts
+export const GET_DRAFT_ROOMS = 'drafts.GET_DRAFT_ROOMS';

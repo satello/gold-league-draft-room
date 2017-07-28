@@ -5,7 +5,7 @@ const WS_ENDPOINT = process.env.REACT_APP_WS_ENDPOINT;
 export function connectSocket(roomId) {
   return {
     type: types.SOCKET_CONNECT,
-    url: `${WS_ENDPOINT}/${roomId}/connect`
+    url: `${WS_ENDPOINT}/rooms/${roomId}/connect`
   }
 }
 
