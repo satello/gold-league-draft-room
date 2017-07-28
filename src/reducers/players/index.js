@@ -11,8 +11,13 @@ export default function playerState(state = initialState, action = {}) {
   switch (action.type) {
     case types.RECEIVE_PLAYERS:
       const playerList = action.payload;
+      // filter out taken players
+      // FIXME expensive?
+      const filteredPlayerList = _.filter(playerList, function(p) {
+        return !p.taken;
+      });
 
-      return Object.assign({}, state, {players: playerList, playersLoaded: true});
+      return Object.assign({}, state, {players: filteredPlayerList, playersLoaded: true});
 
     case types.SELECT_PLAYER:
       // FIXME probably not that efficient
