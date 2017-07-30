@@ -16,7 +16,8 @@ import {
   PAUSE_DRAFT_REQUEST,
   RESUME_DRAFT_REQUEST,
   NOMINATE_PLAYER,
-  PLACE_BID
+  PLACE_BID,
+  ROLLBACK_NOMINATION
 } from '../actions/types';
 import * as serverTypes from '../actions/socket/payloadTypes';
 
@@ -208,6 +209,11 @@ const socketMiddleware = (function(){
       case RESUME_DRAFT_REQUEST:
         socket.send(JSON.stringify({
           "MessageType": serverTypes.RESUME_DRAFT,
+        }));
+        break;
+      case ROLLBACK_NOMINATION:
+        socket.send(JSON.stringify({
+          "MessageType": serverTypes.ROLLBACK_NOMINATION,
         }));
         break;
       //This action is irrelevant to us, pass it on to the next middleware

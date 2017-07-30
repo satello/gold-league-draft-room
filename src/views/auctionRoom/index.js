@@ -16,6 +16,7 @@ import NominationBox from '../../containers/nominationBox';
 // actions
 import { connectSocket } from '../../actions/socket';
 import { startDraft, pauseDraft, resumeDraft } from '../../actions/app';
+import { rollbackNomination } from '../../actions/drafts';
 
 
 class AuctionRoom extends Component {
@@ -41,6 +42,10 @@ class AuctionRoom extends Component {
 
   resumeDraft() {
     this.props.resumeDraft();
+  }
+
+  rollbackNomination() {
+    this.props.rollbackNomination();
   }
 
   render() {
@@ -79,10 +84,19 @@ class AuctionRoom extends Component {
         startPauseBtn = (<div className="new-draft-room-btn btn" onClick={this.resumeDraft.bind(this)}>Resume Draft</div>);
       }
 
+      let undoBtn;
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user.name === "Zach" || user.name === "Sam") {
+        undoBtn = (<div className="btn" onClick={this.rollbackNomination.bind(this)}>Undo Pick</div>);
+      }
+
       return (
         <div className="AuctionRoom main-view">
           <div className="continue-btn">
             {startPauseBtn}
+          </div>
+          <div className="rollback-btn">
+            {undoBtn}
           </div>
           <div className="row">
             <div className="col-md-7">
@@ -126,6 +140,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     resumeDraft: () => {
       dispatch(resumeDraft())
+    },
+    rollbackNomination: () => {
+      dispatch(rollbackNomination())
     },
   }
 };

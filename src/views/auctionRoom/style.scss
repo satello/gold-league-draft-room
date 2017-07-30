@@ -62,6 +62,23 @@
     border-radius: 5px;
     color: black;
   }
+
+  .rollback-btn {
+    position: fixed;
+    top: 1.3em;
+    right: 15em;
+
+    .btn {
+      margin-top: 50px;
+      width: 180px;
+      margin: auto;
+      text-align: center;
+      background-color: $md-green-400;
+      cursor: pointer;
+      border-radius: 5px;
+      color: black;
+    }
+  }
 }
 
 .AuctionRoom.main-view {

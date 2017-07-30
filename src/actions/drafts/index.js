@@ -28,3 +28,9 @@ function showDraftRooms(rooms) {
     payload: rooms
   }
 }
+
+export function rollbackNomination() {
+  return {
+    type: types.ROLLBACK_NOMINATION,
+  }
+}
