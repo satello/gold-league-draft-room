@@ -2,13 +2,25 @@
 
 .nomination-box {
   margin: 15px;
-  .nomination-btn {
-    background-color: $md-blue-grey-50;
-    cursor: not-allowed;
-  }
 
-  .nomination-btn.active {
-    background-color: $md-green-400;
-    cursor: pointer;
+  .nomination-input {
+    #nominationAmount {
+      width: 100%;
+      text-align: center;
+      padding: 5px;
+      font-size: 20px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .nomination-btn {
+      background-color: $md-blue-grey-50;
+      cursor: not-allowed;
+    }
+
+    .nomination-btn.active {
+      background-color: $md-green-400;
+      cursor: pointer;
+    }
   }
 }

@@ -13,19 +13,19 @@ class BidderBox extends Component {
     this.requestedBidders = false;
   }
   componentWillMount() {
-    if (!this.props.bidderState.biddersLoaded) {
-      this.props.getBidders();
+    if (!this.props.biddersLoaded) {
+      // this.props.getBidders();
     }
   }
 
   render() {
-    if (!this.props.bidderState || !this.props.bidderState.bidders) return false;
-    const bidders = this.props.bidderState.bidders;
+    if (!this.props || !this.props.bidders) return false;
+    const bidders = this.props.bidders;
     let bidderAvatars = []
 
     for (var i=0; i < bidders.length; i++) {
       bidderAvatars.push(
-        <BidderAvatar key={"bidder-avatar-" + i} bidder={bidders[i]} nominating={this.props.bidderState.currentNominatorId === bidders[i].bidderId}/>
+        <BidderAvatar key={"bidder-avatar-" + i} bidder={bidders[i]} nominating={this.props.currentNominatorId === bidders[i].bidderId}/>
       )
     }
 
@@ -48,7 +48,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
-    return state;
+    return state.bidderState;
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BidderBox);

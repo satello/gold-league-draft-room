@@ -13,16 +13,18 @@ import * as bidderActions from '../../actions/bidders';
 class ItemBox extends Component {
 
   componentDidUpdate(prevProps) {
-    const bidInputDiv = document.getElementById("bidInput");
-    if (!this.props.bidderState.currentPlayerName) {
-      bidInputDiv.value = 0;
-    }
-    else if (prevProps.bidderState.currentPlayerName !== this.props.bidderState.currentPlayerName) {
-      bidInputDiv.value = (this.props.bidderState.currentBid + 1);
-    }
-    else if (prevProps.bidderState.currentBid !== this.props.bidderState.currentBid) {
-      if (bidInputDiv.value <= this.props.bidderState.currentBid) {
+    if (prevProps.bidderState.currentPlayerName !== this.props.bidderState.currentPlayerName || this.props.bidderState.currentBid !== prevProps.bidderState.currentBid) {
+      const bidInputDiv = document.getElementById("bidInput");
+      if (!this.props.bidderState.currentPlayerName) {
+        bidInputDiv.value = 0;
+      }
+      else if (prevProps.bidderState.currentPlayerName !== this.props.bidderState.currentPlayerName) {
         bidInputDiv.value = (this.props.bidderState.currentBid + 1);
+      }
+      else if (prevProps.bidderState.currentBid !== this.props.bidderState.currentBid) {
+        if (bidInputDiv.value <= this.props.bidderState.currentBid) {
+          bidInputDiv.value = (this.props.bidderState.currentBid + 1);
+        }
       }
     }
   }

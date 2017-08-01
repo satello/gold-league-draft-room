@@ -44,10 +44,6 @@ export default function bidderState(state = initialState, action = {}) {
         currentBidderId: action.payload.bidderId
       });
     case types.INIT_DRAFT_STATE:
-      console.log("and now we set");
-      console.log(action.payload);
-      console.log(state.currentPlayerName);
-      console.log(action.payload.currentPlayerName);
       return Object.assign({}, state, {
         currentNominatorId: state.currentNominatorId ? state.currentNominatorId : action.payload.currentNominatorId,
         currentPlayerName: state.currentPlayerName ? state.currentPlayerName : action.payload.currentPlayerName,

@@ -65,7 +65,6 @@ export function placeBid(body) {
 }
 
 export function initDraftState(body) {
-  console.log(body);
   return dispatch => {
     dispatch(initBidderState(body.draftState));
     dispatch(initAppState(body.draftState));

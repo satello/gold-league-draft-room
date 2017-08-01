@@ -10,6 +10,13 @@ import * as playerActions from '../../actions/players'
 
 class NominationBox extends Component {
 
+  shouldComponentUpdate(nextProps) {
+    if (this.props.playerState.selectedPlayer !== nextProps.playerState.selectedPlayer) {
+      return true
+    }
+    return false
+  }
+
   nominatePlayer() {
     // no nominating if paused
     if (this.props.appState.paused) return;
@@ -18,7 +25,12 @@ class NominationBox extends Component {
     if (!this.props.playerState.selectedPlayer) return;
     // make sure bidder is allowed to nominate
     if (this.props.bidderState.currentNominatorId !== bidderId) return;
-    this.props.nominatePlayer(Object.assign({}, {name: this.props.playerState.selectedPlayer.name}, {bidderId: bidderId}));
+    const amountDiv = document.getElementById("nominationAmount");
+    this.props.nominatePlayer({
+      name: this.props.playerState.selectedPlayer.name,
+      bidderId: bidderId,
+      amount: amountDiv.value
+    });
   }
 
   render() {
@@ -32,9 +44,16 @@ class NominationBox extends Component {
     }
     return (
       <div className="nomination-box">
-        {playerDiv}
-        <div className={"btn nomination-btn" + (this.props.bidderState.currentNominatorId === localStorage.getItem("bidderId") ? " active" : "")} onClick={this.nominatePlayer.bind(this)}>Nominate</div>
-      </div>
+        <div className="row">
+          <div className="col-md-6">
+            {playerDiv}
+          </div>
+          <div className="col-md-6 nomination-input">
+            <input id="nominationAmount" type="number" step="1" defaultValue={1}/>
+            <div className={"btn nomination-btn" + (this.props.bidderState.currentNominatorId === localStorage.getItem("bidderId") ? " active" : "")} onClick={this.nominatePlayer.bind(this)}>Nominate</div>
+          </div>
+        </div>
+    </div>
     )
   }
 }
