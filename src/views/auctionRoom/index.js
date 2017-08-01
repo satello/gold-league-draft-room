@@ -18,6 +18,8 @@ import { connectSocket } from '../../actions/socket';
 import { startDraft, pauseDraft, resumeDraft } from '../../actions/app';
 import { rollbackNomination } from '../../actions/drafts';
 
+const JINGLE = new Audio(require('./nominationjingle.wav'));
+
 
 class AuctionRoom extends Component {
   componentWillMount() {
@@ -46,6 +48,15 @@ class AuctionRoom extends Component {
 
   rollbackNomination() {
     this.props.rollbackNomination();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.bidderState && nextProps.bidderState && this.props.bidderState.currentNominatorId !== nextProps.bidderState.currentNominatorId) {
+      const isCurrentNominator = nextProps.bidderState.currentNominatorId === localStorage.getItem("bidderId");
+      if (isCurrentNominator) {
+        JINGLE.play();
+      }
+    }
   }
 
   render() {

@@ -37,6 +37,8 @@ class NominationBox extends Component {
     if (!this.props.playerState) return false;
     let playerDiv;
 
+    const isCurrentNominator = this.props.bidderState.currentNominatorId === localStorage.getItem("bidderId");
+
     if (this.props.playerState.selectedPlayer) {
       playerDiv = <PlayerAvatar player={this.props.playerState.selectedPlayer} />
     } else {
@@ -50,7 +52,7 @@ class NominationBox extends Component {
           </div>
           <div className="col-md-6 nomination-input">
             <input id="nominationAmount" type="number" step="1" defaultValue={1}/>
-            <div className={"btn nomination-btn" + (this.props.bidderState.currentNominatorId === localStorage.getItem("bidderId") ? " active" : "")} onClick={this.nominatePlayer.bind(this)}>Nominate</div>
+            <div className={"btn nomination-btn" + (isCurrentNominator ? " active" : "")} onClick={this.nominatePlayer.bind(this)}>Nominate</div>
           </div>
         </div>
     </div>
