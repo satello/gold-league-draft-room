@@ -50,3 +50,4 @@ export const UPDATE_TICKER = 'time.UPDATE_TICKER';
 // drafts
 export const GET_DRAFT_ROOMS = 'drafts.GET_DRAFT_ROOMS';
 export const ROLLBACK_NOMINATION = 'drafts.ROLLBACK_NOMINATION';
+export const LEAVE_DRAFT = 'drafts.LEAVE_DRAFT';

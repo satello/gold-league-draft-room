@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './style.scss';
-
 // sound to play
 const REMINDER = new Audio(require('./ding.wav'));
 

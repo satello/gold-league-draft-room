@@ -15,10 +15,8 @@ export default function messageState(state = initialState, action = {}) {
       let messageListCopy;
       if (curLength >= MESSAGE_LIST_CAP) {
         const over = curLength - MESSAGE_LIST_CAP + 1;
-        console.log(over);
         // remove the first n items from list that it is over the cap + 1 for new message
         messageListCopy = state.messageList.slice(over, MESSAGE_LIST_CAP);
-        console.log(messageListCopy)
       } else {
         // copy whole list
         messageListCopy = state.messageList.slice();

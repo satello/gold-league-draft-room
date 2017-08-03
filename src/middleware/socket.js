@@ -17,9 +17,11 @@ import {
   RESUME_DRAFT_REQUEST,
   NOMINATE_PLAYER,
   PLACE_BID,
-  ROLLBACK_NOMINATION
+  ROLLBACK_NOMINATION,
+  LEAVE_DRAFT,
 } from '../actions/types';
 import * as serverTypes from '../actions/socket/payloadTypes';
+
 
 const socketMiddleware = (function(){
   var socket = null;
@@ -42,7 +44,6 @@ const socketMiddleware = (function(){
     for (var i=0; i<evts.length; i++) {
       var msg = JSON.parse(evts[i]);
 
-      console.log(msg.MessageType);
       switch(msg.MessageType) {
         case "TOKEN_VALID":
           store.dispatch(socketActions.validBidder());
@@ -184,7 +185,6 @@ const socketMiddleware = (function(){
         }));
         break;
       case START_AUCTION_REQUEST:
-        console.log("in middleware");
         socket.send(JSON.stringify({
           "MessageType": serverTypes.START_DRAFT
         }))
@@ -216,6 +216,14 @@ const socketMiddleware = (function(){
           "MessageType": serverTypes.ROLLBACK_NOMINATION,
         }));
         break;
+      case LEAVE_DRAFT:
+        socket.send(JSON.stringify({
+          "MessageType": serverTypes.LEAVE_DRAFT,
+          "body": {
+            "bidderId": localStorage.getItem("bidderId")
+          }
+        }));
+        break;
       //This action is irrelevant to us, pass it on to the next middleware
       default:
         return next(action);
@@ -224,4 +232,4 @@ const socketMiddleware = (function(){
 
 })();
 
-export default socketMiddleware
+export default socketMiddleware;

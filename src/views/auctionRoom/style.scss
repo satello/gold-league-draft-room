@@ -79,6 +79,31 @@
       color: black;
     }
   }
+
+  .leave-draft {
+    position: fixed;
+    top: 1.45em;
+    left: 12em;
+    color: white;
+
+    #leave-draft-btn {
+      cursor: pointer;
+    }
+
+    #confirm-leave-draft {
+      display: none;
+      p {
+        margin-bottom: 2px;
+      }
+      .option {
+        display: inline-block;
+        margin-right: 10px;
+        margin-left: 10px;
+        cursor: pointer;
+        color: $md-green-400;
+      }
+    }
+  }
 }
 
 .AuctionRoom.main-view {

@@ -10,3 +10,4 @@ export const BID = 'bid';
 export const PAUSE_DRAFT = 'pauseDraft';
 export const RESUME_DRAFT = 'resumeDraft';
 export const ROLLBACK_NOMINATION = 'rollbackNomination';
+export const LEAVE_DRAFT = 'withdrawBidder';

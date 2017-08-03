@@ -16,7 +16,7 @@ import NominationBox from '../../containers/nominationBox';
 // actions
 import { connectSocket } from '../../actions/socket';
 import { startDraft, pauseDraft, resumeDraft } from '../../actions/app';
-import { rollbackNomination } from '../../actions/drafts';
+import { rollbackNomination, leaveDraft } from '../../actions/drafts';
 
 const JINGLE = new Audio(require('./nominationjingle.wav'));
 
@@ -48,6 +48,25 @@ class AuctionRoom extends Component {
 
   rollbackNomination() {
     this.props.rollbackNomination();
+  }
+
+  leaveDraft() {
+    this.props.leaveDraft();
+    this.hideLeaveDraftConfirm();
+  }
+
+  showLeaveDraftConfirm() {
+    const leaveBtn = document.getElementById("leave-draft-btn");
+    leaveBtn.style.display = 'none';
+    const confirmDiv = document.getElementById("confirm-leave-draft");
+    confirmDiv.style.display = 'inline-block';
+  }
+
+  hideLeaveDraftConfirm() {
+    const confirmDiv = document.getElementById("confirm-leave-draft");
+    confirmDiv.style.display = 'none';
+    const leaveBtn = document.getElementById("leave-draft-btn");
+    leaveBtn.style.display = 'inline-block';
   }
 
   componentWillReceiveProps(nextProps) {
@@ -109,6 +128,17 @@ class AuctionRoom extends Component {
           <div className="rollback-btn">
             {undoBtn}
           </div>
+          <div className="leave-draft">
+            <div id="leave-draft-btn" onClick={this.showLeaveDraftConfirm}>
+              Finish Draft
+            </div>
+            <div id="confirm-leave-draft">
+              <p>Are you sure? You cannot rejoin once you leave</p>
+              <p className="option" onClick={this.leaveDraft.bind(this)}>yes</p>
+              <span>/</span>
+              <p className="option" onClick={this.hideLeaveDraftConfirm}>no</p>
+            </div>
+          </div>
           <div className="row">
             <div className="col-md-7">
               <div className="bid-container">
@@ -155,6 +185,9 @@ const mapDispatchToProps = (dispatch) => {
     rollbackNomination: () => {
       dispatch(rollbackNomination())
     },
+    leaveDraft: () => {
+      dispatch(leaveDraft())
+    }
   }
 };
 

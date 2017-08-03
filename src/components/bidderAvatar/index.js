@@ -14,6 +14,10 @@ const BidderAvatar = (props) => {
   if (bidder.cap === 0 || bidder.spots === 0) {
     eligible = false;
   }
+
+  if (!bidder.eligible) {
+    eligible = false
+  }
   return (
       <div className="bidder-avatar-container">
         <div className={"bidder-avatar col-md-1" + (active ? ' ' : ' inactive') + (props.nominating ? ' nominating' : '') + (eligible ? ' ' : ' ineligible')}>

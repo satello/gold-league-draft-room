@@ -12,9 +12,12 @@ class NominationBox extends Component {
 
   shouldComponentUpdate(nextProps) {
     if (this.props.playerState.selectedPlayer !== nextProps.playerState.selectedPlayer) {
-      return true
+      return true;
     }
-    return false
+    if (this.props.bidderState.currentNominatorId !== nextProps.bidderState.currentNominatorId) {
+      return true;
+    }
+    return false;
   }
 
   nominatePlayer() {

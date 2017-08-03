@@ -86,7 +86,6 @@ export function openAuctionRoom(payload) {
       return response.json();
     })
     .then(response => {
-      console.log()
       dispatch(showAuctionRoomId(response.result));
     })
     .catch(error => {

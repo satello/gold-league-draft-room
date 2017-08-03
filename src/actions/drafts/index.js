@@ -34,3 +34,9 @@ export function rollbackNomination() {
     type: types.ROLLBACK_NOMINATION,
   }
 }
+
+export function leaveDraft() {
+  return {
+    type: types.LEAVE_DRAFT,
+  }
+}
