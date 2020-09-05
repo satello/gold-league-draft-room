@@ -38,7 +38,6 @@ class GoldLeagueTable extends Component {
         return (_entry.cells.position === this.state.position)
       })
 
-    console.log(_tableRows.length)
 
     return (
       <Card className="mb-4 players-wrapper">
@@ -58,7 +57,7 @@ class GoldLeagueTable extends Component {
               searchPrompt="Type to Search ..."
               sortable={true}
               onRender={this.props.onRender}
-              sortDesc={true}
+              sortDesc={false}
               sortBy={this.props.defaultSort ? this.props.defaultSort : {}}>
             </SearchTable>
         </CardBlock>

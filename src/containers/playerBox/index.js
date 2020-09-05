@@ -10,8 +10,7 @@ import * as playerActions from '../../actions/players';
 const tableHeadings = [
   {id: "name", displayName: "name"},
   {id: "position", displayName: "position"},
-  {id: "bye", displayName: "bye"},
-  {id: "value", displayName: "value"}
+  {id: "bye", displayName: "bye"}
 ]
 
 class PlayerBox extends Component {
@@ -37,6 +36,7 @@ class PlayerBox extends Component {
     // FIXME this is dumb AF stupid ass table library
     let player;
     const data = [];
+    console.log(players[0])
     for (var i=0; i<players.length; i++) {
       // need to store each name as a const. yuck
       const playerData = {}
@@ -46,7 +46,7 @@ class PlayerBox extends Component {
         name: player.name,
         position: player.position,
         bye: player.bye,
-        value: player.value
+        rank: player.redraft_rank
       }
 
       if (!player.taken) {
@@ -58,7 +58,7 @@ class PlayerBox extends Component {
 
     return(
       <div className="players-box">
-        <PlayerTable tableId="players-table" tableHeadings={tableHeadings} data={data} defaultSort="value"/>
+        <PlayerTable tableId="players-table" tableHeadings={tableHeadings} data={data} defaultSort="rank"/>
       </div>
     )
   }
